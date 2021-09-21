@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="LearningWPF.View.BookView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LearningWPF.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="669" d:DesignWidth="1192">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <ListView ItemsSource="{Binding Recipes}" SelectedItem="{Binding SelectedRecipe}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <local:ItemsListBox/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+        <Grid Grid.Column="1">
+            <ContentControl>
+                <ContentControl.Content>
+                    <local:RecipeView/>
+                </ContentControl.Content>
+            </ContentControl>
+            <Button Style="{StaticResource SaveButton}" CommandParameter="{Binding SelectedRecipe}"  Width="25" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Image Source="edit-2653317-2202989.png" Height="16" Width="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Button>
+            <Button Style="{StaticResource EditButton}" Command="{Binding RemoveCommand}" CommandParameter="{Binding SelectedRecipe}"  Width="25" Height="25" HorizontalAlignment="Right" VerticalAlignment="Top">
+                <Image Source="edit-2653317-2202989.png" Height="16" Width="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Button>
+        </Grid>
+        <Button Command="{Binding AddCommand}" Style="{StaticResource AddButton}" Width="130" Height="25" VerticalAlignment="Bottom" Content="Добавление рецепта"/>
+    </Grid>
+</UserControl>
