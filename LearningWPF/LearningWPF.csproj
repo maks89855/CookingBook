@@ -57,9 +57,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Converter\Convert.cs" />
+    <Compile Include="AppMain.cs" />
+    <Compile Include="Helpers\Converters.cs" />
     <Compile Include="Service\IDialogService.cs" />
     <Compile Include="Service\IFileService.cs" />
+    <Compile Include="Service\IRecipeDataSevice.cs" />
     <Compile Include="Service\JsonFileService.cs" />
     <Compile Include="Service\WindowDialogService.cs" />
     <Compile Include="View\BookView.xaml.cs">
@@ -79,7 +81,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="RellayCommand.cs" />
+    <Compile Include="Util\RellayCommand.cs" />
     <Compile Include="ViewModel\ApplicationViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -126,20 +128,40 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Снимок экрана %284%29.png" />
+    <Resource Include="Resourse\Снимок экрана %284%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Снимок экрана %286%29.png" />
+    <Resource Include="Resourse\Снимок экрана %286%29.png" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\783567.png" />
+    <Resource Include="Resourse\783567.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resourse\edit-2653317-2202989.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\blue-computer-icon-angle-brand-png-favpng-p1FndySbnCVhDpDm0eLA7Xq9H.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resourse\Paomedia-Small-N-Flat-Floppy.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Paomedia-Small-N-Flat-Floppy.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\edit-2653317-2202989.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resourse\image--v2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resourse\png-transparent-computer-icons-book-book.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resourse\864685.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

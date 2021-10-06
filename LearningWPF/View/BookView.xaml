@@ -26,12 +26,6 @@
                     <local:RecipeView/>
                 </ContentControl.Content>
             </ContentControl>
-            <Button Style="{StaticResource SaveButton}" CommandParameter="{Binding SelectedRecipe}"  Width="25" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <Image Source="edit-2653317-2202989.png" Height="16" Width="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            </Button>
-            <Button Style="{StaticResource EditButton}" Command="{Binding RemoveCommand}" CommandParameter="{Binding SelectedRecipe}"  Width="25" Height="25" HorizontalAlignment="Right" VerticalAlignment="Top">
-                <Image Source="edit-2653317-2202989.png" Height="16" Width="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            </Button>
         </Grid>
         <Button Command="{Binding AddCommand}" Style="{StaticResource AddButton}" Width="130" Height="25" VerticalAlignment="Bottom" Content="Добавление рецепта"/>
     </Grid>

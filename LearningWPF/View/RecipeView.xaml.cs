@@ -26,15 +26,15 @@ namespace LearningWPF.View
             InitializeComponent();
         }
 
-        private void AddImage(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog op = new OpenFileDialog();
-            op.Title = "Select a picture";
-            op.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
-            if (op.ShowDialog() == true)
-            {
-                Image1.Source = new BitmapImage(new Uri(op.FileName));
-            }
-        }
+        //private void AddImage(object sender, RoutedEventArgs e)
+        //{
+        //    OpenFileDialog op = new OpenFileDialog();
+        //    op.Title = "Select a picture";
+        //    op.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
+        //    if (op.ShowDialog() == true)
+        //    {
+        //        Image1.Source = new BitmapImage(new Uri(op.FileName));
+        //    }
+        //}
     }
 }

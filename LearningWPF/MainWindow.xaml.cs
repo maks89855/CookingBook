@@ -17,7 +17,6 @@ namespace LearningWPF
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new ApplicationViewModel();
         }
     }
 }

@@ -2,8 +2,11 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:LearningWPF"
+             xmlns:helper="clr-namespace:LearningWPF.Helpers"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <helper:BoolToVisibilityConverter x:Key="IsEditConverter"/>
+        <helper:NullToVisibilityConverter x:Key="SelectedRecipeConverter"/>
         <Style x:Key="AddButton" TargetType="Button">
             <Setter Property="Template">
                 <Setter.Value>
@@ -26,7 +29,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
         <Style x:Key="SaveButton" TargetType="Button">
             <Setter Property="Template">
                 <Setter.Value>
@@ -34,6 +36,20 @@
                         <Border Name="ButtonBorder" CornerRadius="0 0 10 0" BorderThickness="1" BorderBrush="Gray" Background="LightGray" Cursor="Hand">
                             <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="AddImageButton" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="ButtonBorder" BorderThickness="1" Cursor="Hand">
+                            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+<!--Добавить триггер при наведении--> 
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>

@@ -11,7 +11,7 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
-        <Image Source="Снимок экрана (4).png"/>
-        <TextBlock Grid.Column="1" FontSize="18" Text="{Binding Path=NameRecipe}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Image Source="/LearningWPF;component/Resourse/864685.png"/>
+        <TextBlock Grid.Column="1" FontSize="14" Text="{Binding Path=NameRecipe}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
     </Grid>
 </UserControl>

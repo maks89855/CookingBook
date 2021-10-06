@@ -7,6 +7,9 @@
         xmlns:v="clr-namespace:LearningWPF.View"
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="1200" WindowStartupLocation="CenterScreen">
+    <Window.DataContext>
+        <local:ApplicationViewModel/>
+    </Window.DataContext>
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="FontSize" Value="14" />

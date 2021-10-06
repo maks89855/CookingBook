@@ -45,18 +45,23 @@ namespace LearningWPF
         public string ImagePath
         {
             get { return _imagePath; }
-            set
-            {
-                _imagePath = value;
-                OnPropertyChanged("ImagePath");
-            }
+            set { OnPropertyChanged(ref _imagePath, value); }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        protected virtual void OnPropertyChanged(string propertyName)
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        protected virtual bool OnPropertyChanged<T>(ref T backingField, T value, [CallerMemberName] string propertyName = "")
+        {
+            if (EqualityComparer<T>.Default.Equals(backingField, value))
+                return false;
+
+            backingField = value;
+            OnPropertyChanged(propertyName);
+            return true;
         }
     }
 }
