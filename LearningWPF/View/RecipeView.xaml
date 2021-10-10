@@ -22,12 +22,16 @@
                FontSize="20" FontFamily="Arial"
                Visibility="{Binding IsDisplayMode, Converter={StaticResource IsEditConverter}}"/>
         <Grid Grid.Row="1" Background="White">
-            <Image Grid.Row="1" Source="/LearningWPF;component/Resourse/image--v2.png"/>
+            <Image Grid.Row="1"  Source="{Binding SelectedRecipe.ImagePath,
+                        FallbackValue={StaticResource DefaultContactImage},
+                        TargetNullValue={StaticResource DefaultContactImage}}"/>
             <Button Style="{DynamicResource AddImageButton}" Width="400px"
                     Command="{Binding AddImageCommand}"
                     Visibility="{Binding IsEditMode, Converter={StaticResource IsEditConverter}}" 
                     Background="{x:Null}" BorderBrush="Transparent" Cursor="Hand">
-                <Image Grid.Row="1" Source="/LearningWPF;component/Resourse/image--v2.png"/>
+                <Image Grid.Row="1" Source="{Binding SelectedRecipe.ImagePath,
+                        FallbackValue={StaticResource DefaultContactImage},
+                        TargetNullValue={StaticResource DefaultContactImage}}"/>
             </Button>
         </Grid>
         <Label Grid.Row="2" Content="{Binding SelectedRecipe.СompositionOfTheDish}"
@@ -44,14 +48,15 @@
                 CommandParameter="{Binding SelectedRecipe}"  
                 Visibility="{Binding IsDisplayMode, Converter={StaticResource IsEditConverter}}"
                 Width="25" Height="25" HorizontalAlignment="Right" VerticalAlignment="Top">
-            <Image Source="edit-2653317-2202989.png" Height="16" Width="18" 
+            <Image Source="/LearningWPF;component/Resourse/EditImage.png" Height="16" Width="18" 
                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Button>
         <Button Style="{StaticResource SaveButton}" 
                 Width="25" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top"
                 Command="{Binding SaveCommand}"
                 Visibility="{Binding IsEditMode, Converter={StaticResource IsEditConverter}}">
-            <Image Source="Paomedia-Small-N-Flat-Floppy.ico" Height="16" Width="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Image Source="/LearningWPF;component/Resourse/SaveIcon.ico" 
+                   Height="16" Width="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Button>
     </Grid>
 </UserControl>

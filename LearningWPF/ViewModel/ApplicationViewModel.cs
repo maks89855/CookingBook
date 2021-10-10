@@ -10,14 +10,14 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
 using Microsoft.Win32;
+using LearningWPF.Util;
 
 namespace LearningWPF
 {
-
     /// <summary>
     /// 
     /// </summary>
-    public class ApplicationViewModel : INotifyPropertyChanged
+    public class ApplicationViewModel : PropertyChange
     {
         private Recipe _selectedRecipe;
         public ObservableCollection<Recipe> Recipes { get; private set; }
@@ -41,9 +41,7 @@ namespace LearningWPF
                 NameRecipe = "Название рецепта",
                 СompositionOfTheDish = "Состав",
                 CookingMethod = "Способ приготовления"
-
             };
-
             Recipes.Add(newContact);
             SelectedRecipe = newContact;
         }
@@ -62,7 +60,7 @@ namespace LearningWPF
         /// </summary>
 
         public ICommand EditCommand { get; private set; }
-        private bool _isEditMode ;
+        private bool _isEditMode;
         public bool IsEditMode
         {
             get { return _isEditMode; }
@@ -72,7 +70,6 @@ namespace LearningWPF
                 OnPropertyChanged("IsDisplayMode");
             }
         }
-
         private bool IsEdit()
         {
             return IsEditMode;
@@ -88,7 +85,6 @@ namespace LearningWPF
         {
             IsEditMode = true;
         }
-
 
         public bool IsDisplayMode
         {
@@ -113,47 +109,28 @@ namespace LearningWPF
         private IDialogService _dialogService;
         private IRecipeDataSevice _dataService;
         public ICommand AddImageCommand { get; set; }
-
         private void AddImage()
         {
             //var filePath = _dialogService.OpenFile("Image files|*.bmp;*.jpg;*.jpeg;*.png|All files");
-            //SelectedRecipe.ImagePath = filePath;
+            SelectedRecipe.ImagePath = _dialogService.OpenFile("Image files|*.bmp;*.jpg;*.jpeg;*.png|All files");
         }
 
-
-        public ApplicationViewModel()
+        public ApplicationViewModel(IRecipeDataSevice dataSevice, IDialogService dialogService)
         {
             AddCommand = new RelayCommand(Add);
             RemoveCommand = new RelayCommand(Remove);
             EditCommand = new RelayCommand(Edit, CanEdit);
             SaveCommand = new RelayCommand(Save, IsEdit);
             AddImageCommand = new RelayCommand(AddImage, IsEdit);
-            //_dataService = dataService;
-            //_dialogService = dialogService;
+            _dataService = dataSevice;
+            _dialogService = dialogService;
             Recipes = new ObservableCollection<Recipe>
-
             {
                 new Recipe {NameRecipe="Рецепт 1", СompositionOfTheDish="Состав", CookingMethod="Method one" },
                 new Recipe {NameRecipe="Рецепт 2", СompositionOfTheDish="Состав", CookingMethod="Method two" },
                 new Recipe {NameRecipe="Рецепт 3", СompositionOfTheDish="Состав", CookingMethod="Method three" },
                 new Recipe {NameRecipe="Рецепт 4", СompositionOfTheDish="Состав", CookingMethod="Method four" }
             };
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        protected virtual bool OnPropertyChanged<T>(ref T backingField, T value, [CallerMemberName] string propertyName = "")
-        {
-            if (EqualityComparer<T>.Default.Equals(backingField, value))
-                return false;
-
-            backingField = value;
-            OnPropertyChanged(propertyName);
-            return true;
         }
     }
 }

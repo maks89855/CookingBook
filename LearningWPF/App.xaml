@@ -3,17 +3,31 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:LearningWPF"
              xmlns:helper="clr-namespace:LearningWPF.Helpers"
+             xmlns:v="clr-namespace:LearningWPF.View"
+             xmlns:vm ="clr-namespace:LearningWPF.ViewModel"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <DataTemplate DataType="{x:Type vm:RecipeViewModel}">
+            <v:BookView/>
+        </DataTemplate>
+        
         <helper:BoolToVisibilityConverter x:Key="IsEditConverter"/>
         <helper:NullToVisibilityConverter x:Key="SelectedRecipeConverter"/>
+
+        <BitmapImage x:Key="DefaultContactImage" UriSource="/Resourse/DefaultImage.png"/>
+        
         <Style x:Key="AddButton" TargetType="Button">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Name="ButtonBorder" CornerRadius="20 20 0 0" BorderThickness="1" BorderBrush="Gray" Background="LightGray" Cursor="Hand">
+                        <Border Name="ButtonBorder" CornerRadius="20 20 0 0" BorderThickness="1" BorderBrush="Gray" Cursor="Hand">
                             <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="Aqua" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>

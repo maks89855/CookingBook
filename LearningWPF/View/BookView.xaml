@@ -5,14 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LearningWPF.View"
              mc:Ignorable="d" 
-             d:DesignHeight="669" d:DesignWidth="1192">
+             d:DesignHeight="850" d:DesignWidth="1150">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
-            <ListView ItemsSource="{Binding Recipes}" SelectedItem="{Binding SelectedRecipe}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView ItemsSource="{Binding RecipeVM.Recipes}" 
+                      SelectedItem="{Binding RecipeVM.SelectedRecipe}" 
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <local:ItemsListBox/>
@@ -23,10 +25,12 @@
         <Grid Grid.Column="1">
             <ContentControl>
                 <ContentControl.Content>
-                    <local:RecipeView/>
+                    <local:RecipeView DataContext="{Binding RecipeVM}"/>
                 </ContentControl.Content>
             </ContentControl>
         </Grid>
-        <Button Command="{Binding AddCommand}" Style="{StaticResource AddButton}" Width="130" Height="25" VerticalAlignment="Bottom" Content="Добавление рецепта"/>
+        <Button Command="{Binding RecipeVM.AddCommand}" 
+                Style="{StaticResource AddButton}" Width="130" Height="25" 
+                VerticalAlignment="Bottom" Content="Добавление рецепта"/>
     </Grid>
 </UserControl>

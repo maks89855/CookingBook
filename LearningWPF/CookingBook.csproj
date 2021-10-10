@@ -35,10 +35,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -64,6 +68,8 @@
     <Compile Include="Service\IRecipeDataSevice.cs" />
     <Compile Include="Service\JsonFileService.cs" />
     <Compile Include="Service\WindowDialogService.cs" />
+    <Compile Include="Util\PropertyChange.cs" />
+    <Compile Include="ViewModel\RecipeViewModel.cs" />
     <Compile Include="View\BookView.xaml.cs">
       <DependentUpon>BookView.xaml</DependentUpon>
     </Compile>
@@ -119,6 +125,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -128,40 +135,22 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resourse\Снимок экрана %284%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resourse\Снимок экрана %286%29.png" />
-  </ItemGroup>
-  <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resourse\783567.png" />
+    <Resource Include="Resourse\EditImage.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resourse\edit-2653317-2202989.png" />
+    <Resource Include="Resourse\SaveIcon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\blue-computer-icon-angle-brand-png-favpng-p1FndySbnCVhDpDm0eLA7Xq9H.jpg" />
+    <Resource Include="Resourse\DefaultImage.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resourse\Paomedia-Small-N-Flat-Floppy.ico" />
+    <Resource Include="logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Paomedia-Small-N-Flat-Floppy.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="View\edit-2653317-2202989.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resourse\image--v2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resourse\png-transparent-computer-icons-book-book.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resourse\864685.png" />
+    <Resource Include="Resourse\ItemList.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

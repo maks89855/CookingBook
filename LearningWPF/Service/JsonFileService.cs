@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Newtonsoft.Json;
 using System.Linq;
 using System.Runtime.Serialization.Json;
 using System.Text;
@@ -8,28 +9,30 @@ using System.Threading.Tasks;
 
 namespace LearningWPF.Service
 {
-    public class JsonFileService : IFileService
+    public class JsonFileService : IRecipeDataSevice
     {
-        public List<Recipe> Open(string filename)
+        private readonly string _dataPath = "Resources/contactdata.json";
+
+        public IEnumerable<Recipe> GetRecipes()
         {
-            List<Recipe> recipes = new List<Recipe>();
-            DataContractJsonSerializer jsonFormatter =
-                new DataContractJsonSerializer(typeof(List<Recipe>));
-            using (FileStream fs = new FileStream(filename, FileMode.OpenOrCreate))
+            if (!File.Exists(_dataPath))
             {
-                recipes = jsonFormatter.ReadObject(fs) as List<Recipe>;
+                File.Create(_dataPath).Close();
             }
 
-            return recipes;
+            var serializedContacts = File.ReadAllText(_dataPath);
+            var contacts = JsonConvert.DeserializeObject<IEnumerable<Recipe>>(serializedContacts);
+
+            if (contacts == null)
+                return new List<Recipe>();
+
+            return contacts;
         }
-        public void Save(string filename, List<Recipe> recipeList)
+
+        public void Save(IEnumerable<Recipe> recipes)
         {
-            DataContractJsonSerializer jsonFormatter =
-                new DataContractJsonSerializer(typeof(List<Recipe>));
-            using (FileStream fs = new FileStream(filename, FileMode.Create))
-            {
-                jsonFormatter.WriteObject(fs, recipeList);
-            }
+            var serializedRecipes = JsonConvert.SerializeObject(recipes);
+            File.WriteAllText(_dataPath, serializedRecipes);
         }
     }
 }

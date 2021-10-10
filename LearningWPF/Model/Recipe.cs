@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LearningWPF.Util;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LearningWPF
 {
-    public class Recipe : INotifyPropertyChanged
+    public class Recipe : PropertyChange
     {
         private string _nameReicpe;
         private string _compositionOfTheDish;
@@ -46,22 +47,6 @@ namespace LearningWPF
         {
             get { return _imagePath; }
             set { OnPropertyChanged(ref _imagePath, value); }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        protected virtual bool OnPropertyChanged<T>(ref T backingField, T value, [CallerMemberName] string propertyName = "")
-        {
-            if (EqualityComparer<T>.Default.Equals(backingField, value))
-                return false;
-
-            backingField = value;
-            OnPropertyChanged(propertyName);
-            return true;
         }
     }
 }
