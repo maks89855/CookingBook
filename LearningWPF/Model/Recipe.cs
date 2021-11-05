@@ -7,15 +7,20 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LearningWPF
+namespace LearningWPF.Model
 {
     public class Recipe : PropertyChange
     {
+
         private string _nameReicpe;
+        private string _category;
         private string _compositionOfTheDish;
         private string _cookingMethod;
         private string _imagePath;
 
+        /// <summary>
+        /// Название рецепта
+        /// </summary>
         public string NameRecipe
         {
             get { return _nameReicpe; }
@@ -25,6 +30,21 @@ namespace LearningWPF
                 OnPropertyChanged("NameRecipe");
             }
         }
+        /// <summary>
+        /// Категория
+        /// </summary>
+        public string Category
+        {
+            get { return _category; }
+            set
+            {
+                _category = value;
+                OnPropertyChanged("Category");
+            }
+        }
+        /// <summary>
+        /// Состав
+        /// </summary>
         public string СompositionOfTheDish
         {
             get { return _compositionOfTheDish; }
@@ -34,6 +54,9 @@ namespace LearningWPF
                 OnPropertyChanged("СompositionOfTheDish");
             }
         }
+        /// <summary>
+        /// Способ приготовления
+        /// </summary>
         public string CookingMethod
         {
             get { return _cookingMethod; }
@@ -43,6 +66,9 @@ namespace LearningWPF
                 OnPropertyChanged("CookingMethod");
             }
         }
+        /// <summary>
+        /// Изображение
+        /// </summary>
         public string ImagePath
         {
             get { return _imagePath; }

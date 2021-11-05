@@ -62,7 +62,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppMain.cs" />
+    <Compile Include="Service\ICategoryDataService.cs" />
+    <Compile Include="Service\JSON.cs" />
+    <Compile Include="ViewModel\CategoryViewModel.cs" />
+    <Compile Include="ViewRecipe.cs" />
     <Compile Include="Helpers\Converters.cs" />
+    <Compile Include="Model\ItemTab.cs" />
     <Compile Include="Service\IDialogService.cs" />
     <Compile Include="Service\IFileService.cs" />
     <Compile Include="Service\IRecipeDataSevice.cs" />
@@ -70,8 +75,12 @@
     <Compile Include="Service\WindowDialogService.cs" />
     <Compile Include="Util\PropertyChange.cs" />
     <Compile Include="ViewModel\RecipeViewModel.cs" />
+    <Compile Include="ViewModel\TabViewModel.cs" />
     <Compile Include="View\BookView.xaml.cs">
       <DependentUpon>BookView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CategoryView.xaml.cs">
+      <DependentUpon>CategoryView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ItemsListBox.xaml.cs">
       <DependentUpon>ItemsListBox.xaml</DependentUpon>
@@ -94,6 +103,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\BookView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CategoryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

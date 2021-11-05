@@ -26,7 +26,7 @@ namespace LearningWPF.ViewModel
         {
             RecipeVM = new ApplicationViewModel(dataSevice, dialogService);
             _dataService = dataSevice;
+            RecipeVM.LoadRecipe(_dataService.GetRecipes());
         }
-
     }
 }

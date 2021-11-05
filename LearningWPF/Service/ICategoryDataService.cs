@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace LearningWPF.Service
 {
-    public interface IFileService
+    public interface ICategoryDataService
     {
-        List<Recipe> Open(string filename);
-        void Save(string filename, List<Recipe> recipeList);
+        IEnumerable<ItemTab> GetCategories();
+        void Save(IEnumerable<ItemTab> itemTabs);
     }
 }

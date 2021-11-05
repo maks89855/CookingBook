@@ -6,8 +6,7 @@
         xmlns:local="clr-namespace:LearningWPF"
         xmlns:v="clr-namespace:LearningWPF.View"
         mc:Ignorable="d"
-       
-        Title="Cooking Book" Height="850" Width="1150" WindowStartupLocation="CenterScreen">
+        Title="Cooking Book" Height="900" Width="1150" WindowStartupLocation="CenterScreen">
     <Window.DataContext>
         <local:AppMain/>
     </Window.DataContext>
@@ -19,10 +18,8 @@
             <Setter Property="FontSize" Value="14" />
         </Style>
     </Window.Resources>
-    <DockPanel>
-        <Grid DockPanel.Dock="Top">
-            <ContentControl Content="{Binding CurrentView}" />
-        </Grid>
-    </DockPanel>
+    <Grid>
+        <ContentControl Content="{Binding CurrentViewCategory}"/>
+    </Grid>
 </Window>
     

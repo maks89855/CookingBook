@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows;
 using Microsoft.Win32;
 using LearningWPF.Util;
+using LearningWPF.Model;
 
 namespace LearningWPF
 {
@@ -30,6 +31,10 @@ namespace LearningWPF
                 OnPropertyChanged("SelectedRecipe");
             }
         }
+
+        private IRecipeDataSevice _dataService;
+        private IDialogService _dialogService;
+
         /// <summary>
         /// Команда "Добавить"
         /// </summary>
@@ -54,6 +59,7 @@ namespace LearningWPF
         {
             Recipes.Remove(SelectedRecipe);
         }
+
 
         /// <summary>
         /// Команда "Редактировать"
@@ -88,7 +94,7 @@ namespace LearningWPF
 
         public bool IsDisplayMode
         {
-           get { return !_isEditMode; }
+            get { return !_isEditMode; }
         }
 
         /// <summary>
@@ -97,21 +103,28 @@ namespace LearningWPF
 
         public ICommand SaveCommand { get; private set; }
 
-        private void Save ()
+        private void Save()
         {
-            IsEditMode = false;
-            OnPropertyChanged("SelectedRecipe");
+            if (_selectedRecipe.NameRecipe.Length == 0)
+            {
+                MessageBox.Show("Необходимо указать название рецепта");
+                _selectedRecipe.NameRecipe = "Название рецепта";
+            }
+            else
+            {
+                _dataService.SaveRecipe(Recipes);
+                IsEditMode = false;
+                OnPropertyChanged("SelectedRecipe");
+            }
         }
 
         /// <summary>
         /// Команда "Изменение картинки"
         /// </summary>
-        private IDialogService _dialogService;
-        private IRecipeDataSevice _dataService;
+
         public ICommand AddImageCommand { get; set; }
         private void AddImage()
         {
-            //var filePath = _dialogService.OpenFile("Image files|*.bmp;*.jpg;*.jpeg;*.png|All files");
             SelectedRecipe.ImagePath = _dialogService.OpenFile("Image files|*.bmp;*.jpg;*.jpeg;*.png|All files");
         }
 
@@ -124,13 +137,11 @@ namespace LearningWPF
             AddImageCommand = new RelayCommand(AddImage, IsEdit);
             _dataService = dataSevice;
             _dialogService = dialogService;
-            Recipes = new ObservableCollection<Recipe>
-            {
-                new Recipe {NameRecipe="Рецепт 1", СompositionOfTheDish="Состав", CookingMethod="Method one" },
-                new Recipe {NameRecipe="Рецепт 2", СompositionOfTheDish="Состав", CookingMethod="Method two" },
-                new Recipe {NameRecipe="Рецепт 3", СompositionOfTheDish="Состав", CookingMethod="Method three" },
-                new Recipe {NameRecipe="Рецепт 4", СompositionOfTheDish="Состав", CookingMethod="Method four" }
-            };
+        }
+        public void LoadRecipe(IEnumerable<Recipe> recipes)
+        {
+            Recipes = new ObservableCollection<Recipe>(recipes);
+            OnPropertyChanged("Recipes");
         }
     }
 }

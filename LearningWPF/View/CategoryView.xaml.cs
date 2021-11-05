@@ -1,5 +1,4 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,11 +16,11 @@ using System.Windows.Shapes;
 namespace LearningWPF.View
 {
     /// <summary>
-    /// Логика взаимодействия для RecipeView.xaml
+    /// Логика взаимодействия для CategoryView.xaml
     /// </summary>
-    public partial class RecipeView : UserControl
+    public partial class CategoryView : UserControl
     {
-        public RecipeView()
+        public CategoryView()
         {
             InitializeComponent();
         }

@@ -7,8 +7,8 @@
              xmlns:vm ="clr-namespace:LearningWPF.ViewModel"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <DataTemplate DataType="{x:Type vm:RecipeViewModel}">
-            <v:BookView/>
+        <DataTemplate DataType="{x:Type vm:CategoryViewModel}">
+            <v:CategoryView/>
         </DataTemplate>
         
         <helper:BoolToVisibilityConverter x:Key="IsEditConverter"/>
@@ -20,13 +20,11 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Name="ButtonBorder" CornerRadius="20 20 0 0" BorderThickness="1" BorderBrush="Gray" Cursor="Hand">
+                        <Border Name="ButtonBorder" CornerRadius="20 20 0 0" BorderThickness="1" BorderBrush="Orange" Cursor="Hand">
                             <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="BorderBrush" Value="Aqua" />
-                            </Trigger>
+                            
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -42,6 +40,26 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Height" Duration="0:0:1" To="50"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Height" Duration="0:0:1" To="25"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </Style.Triggers>
         </Style>
         <Style x:Key="SaveButton" TargetType="Button">
             <Setter Property="Template">
@@ -58,15 +76,40 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Name="ButtonBorder" BorderThickness="1" Cursor="Hand">
+                        <Border Name="ButtonBorder" BorderThickness="1" Cursor="Hand" >
                             <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
-<!--Добавить триггер при наведении--> 
+                            <!--Добавить триггер при наведении-->
+
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="DeleteButton" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="ButtonBorder" CornerRadius="10 0 0 10" BorderThickness="1" BorderBrush="Gray" Background="LightGray" Cursor="Hand">
+                            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Background" Value="Aqua"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <!--<TextBox x:Key="TextB">
+            <TextBox.Template>
+                <ControlTemplate TargetType="TextBox">
+                    <Border CornerRadius="5" Padding="2" BorderThickness="1" Background="Gold">
+                    </Border>
+                </ControlTemplate>
+            </TextBox.Template>
+        </TextBox>-->
     </Application.Resources>
 </Application>
