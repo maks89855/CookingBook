@@ -14,10 +14,26 @@ namespace LearningWPF.ViewModel
     public class TabViewModel : PropertyChange
     {
         #region Tabs
+        private int _id;
+        public int ID
+        {
+            get { return _id; }
+            set
+            {
+                _id = value;
+                OnPropertyChanged("ID");
+            }
+        }
+
+        private Random rnd = new Random(1000);
+
         private ICategoryDataService _categoryDataSevice;
 
         private ItemTab _selectedCategory;
-        public ObservableCollection<ItemTab> ItemTabs { get; private set; }
+        /// <summary>
+        /// Коллекция для хранения TabItem`ов
+        /// </summary>
+        public ObservableCollection<ItemTab> ItemTabs { get; set; }
         public ItemTab SelectedCategory
         {
             get { return _selectedCategory; }
@@ -35,23 +51,34 @@ namespace LearningWPF.ViewModel
         }
         public ICommand AddTabCommand { get; private set; }
 
-        public TabViewModel()
+        private object _currentViewRecipe;
+        public object CurrentViewRecipe
+        {
+            get { return _currentViewRecipe; }
+            set { OnPropertyChanged(ref _currentViewRecipe, value); }
+        }
+
+        public TabViewModel(ICategoryDataService categoryDataSevice)
         {
             ItemTabs = new ObservableCollection<ItemTab>();
             AddTabCommand = new RelayCommand(AddTab);
             RemoveTabCommand = new RelayCommand(RemoveTab);
-            //_categoryDataSevice = categoryDataSevice;
+            _categoryDataSevice = categoryDataSevice;
+
         }
+        private IRecipeDataSevice _dataService;
+        private IDialogService _dialogService;
         private void AddTab()
         {
-            var item = new ItemTab
+            ID = rnd.Next();
+            ItemTab item = new ItemTab()
             {
-                Header = "Tab",
-                ViewRecipe = new ViewRecipe()
-            };
-            ItemTabs.Add(item);
+                Header = $"Tab {ID}",
+                ID = ID,
+        }; 
+            ItemTabs.Add(item);       
             SelectedCategory = item;
-
+            _categoryDataSevice.SaveCategories(ItemTabs);
         }
         public ICommand RemoveTabCommand { get; private set; }
         private void RemoveTab()

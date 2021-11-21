@@ -20,8 +20,9 @@ namespace LearningWPF
     /// </summary>
     public class ApplicationViewModel : PropertyChange
     {
+        [NonSerialized]
         private Recipe _selectedRecipe;
-        public ObservableCollection<Recipe> Recipes { get; private set; }
+        public ObservableCollection<Recipe> Recipes { get; set; }
         public Recipe SelectedRecipe
         {
             get { return _selectedRecipe; }
@@ -34,11 +35,14 @@ namespace LearningWPF
 
         private IRecipeDataSevice _dataService;
         private IDialogService _dialogService;
+        private ICategoryDataService _categoryDataService;
 
         /// <summary>
         /// Команда "Добавить"
         /// </summary>
+        
         public ICommand AddCommand { get; private set; }
+       
         private void Add()
         {
             var newContact = new Recipe
@@ -49,6 +53,9 @@ namespace LearningWPF
             };
             Recipes.Add(newContact);
             SelectedRecipe = newContact;
+            //_dataService.SaveRecipe(Recipes);
+            IsEditMode = false;
+            OnPropertyChanged("SelectedRecipe");
         }
 
         /// <summary>
@@ -59,7 +66,6 @@ namespace LearningWPF
         {
             Recipes.Remove(SelectedRecipe);
         }
-
 
         /// <summary>
         /// Команда "Редактировать"
@@ -128,14 +134,15 @@ namespace LearningWPF
             SelectedRecipe.ImagePath = _dialogService.OpenFile("Image files|*.bmp;*.jpg;*.jpeg;*.png|All files");
         }
 
-        public ApplicationViewModel(IRecipeDataSevice dataSevice, IDialogService dialogService)
+        public ApplicationViewModel(IDialogService dialogService)
         {
             AddCommand = new RelayCommand(Add);
             RemoveCommand = new RelayCommand(Remove);
             EditCommand = new RelayCommand(Edit, CanEdit);
             SaveCommand = new RelayCommand(Save, IsEdit);
             AddImageCommand = new RelayCommand(AddImage, IsEdit);
-            _dataService = dataSevice;
+            //_dataService = dataSevice;
+            Recipes = new ObservableCollection<Recipe>();
             _dialogService = dialogService;
         }
         public void LoadRecipe(IEnumerable<Recipe> recipes)

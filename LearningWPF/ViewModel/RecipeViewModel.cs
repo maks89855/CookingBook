@@ -12,8 +12,6 @@ namespace LearningWPF.ViewModel
 {
     public class RecipeViewModel : PropertyChange
     {
-        private IRecipeDataSevice _dataService;
-        private IDialogService _dialogService;
 
         private ApplicationViewModel _recipeVM;
         public ApplicationViewModel RecipeVM
@@ -22,11 +20,11 @@ namespace LearningWPF.ViewModel
             set { OnPropertyChanged(ref _recipeVM, value); }
         }
 
-        public RecipeViewModel(IRecipeDataSevice dataSevice, IDialogService dialogService)
+        public RecipeViewModel(IDialogService dialogService)
         {
-            RecipeVM = new ApplicationViewModel(dataSevice, dialogService);
-            _dataService = dataSevice;
-            RecipeVM.LoadRecipe(_dataService.GetRecipes());
+            RecipeVM = new ApplicationViewModel(dialogService);
+            //_dataService = dataSevice;
+            //RecipeVM.LoadRecipe(_dataService.GetRecipes());
         }
     }
 }

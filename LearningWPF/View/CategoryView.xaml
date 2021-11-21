@@ -10,7 +10,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="10*"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0" Background="White">
             <Button Width="50" Height="30" HorizontalAlignment="Center" VerticalAlignment="Top" 
@@ -22,7 +22,7 @@
             <TabControl Background="White" 
             TabStripPlacement="Top"
             SelectedItem="{Binding TabVM.SelectedCategory}"
-            ItemsSource="{Binding TabVM.ItemTabs}"             
+            ItemsSource="{Binding TabVM.ItemTabs, Mode=TwoWay}"             
             Grid.Column="1">
                 <TabControl.ItemTemplate>
                 <DataTemplate>

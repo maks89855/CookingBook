@@ -23,14 +23,25 @@ namespace LearningWPF.Model
                 OnPropertyChanged("Header");
             }
         }
-        private ViewRecipe _viewModel;
-        public ViewRecipe ViewRecipe
+        public int ID;
+       
+        private RecipeViewModel _content;
+        public RecipeViewModel Content
         {
-            get { return _viewModel; }
+            get { return _content; }
             set
             {
-                OnPropertyChanged(ref _viewModel, value);
+                OnPropertyChanged(ref _content, value);
             }
         }
+        [NonSerialized]
+        private object _currentViewRecipe;
+        public ItemTab()
+        {
+            var dialogService = new WindowDialogService();
+            Content = new RecipeViewModel(dialogService);
+
+        }
+
     }   
 }

@@ -25,7 +25,8 @@ namespace LearningWPF
         }
         public AppMain()
         {
-            CategoryVM = new CategoryViewModel();
+            var dataService = new JsonFileService();
+            CategoryVM = new CategoryViewModel(dataService);
             CurrentViewCategory = CategoryVM;
         }
     }

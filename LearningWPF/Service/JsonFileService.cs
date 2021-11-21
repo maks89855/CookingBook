@@ -10,30 +10,30 @@ using LearningWPF.Model;
 
 namespace LearningWPF.Service
 {
-    public class JsonFileService : IRecipeDataSevice
+    public class JsonFileService : ICategoryDataService
     {
         private readonly string _dataPath = "Recipe.json";
 
-        public IEnumerable<Recipe> GetRecipes()
+        public IEnumerable<ItemTab> GetCategories()
         {
             if (!File.Exists(_dataPath))
             {
                 File.Create(_dataPath).Close();
             }
 
-            var serializedRecipes = File.ReadAllText(_dataPath);
-            var Recipes = JsonConvert.DeserializeObject<IEnumerable<Recipe>>(serializedRecipes);
+            var serializedCategories = File.ReadAllText(_dataPath);
+            var Categories = JsonConvert.DeserializeObject<IEnumerable<ItemTab>>(serializedCategories);
 
-            if (Recipes == null)
-                return new List<Recipe>();
-
-            return Recipes;
+            if (Categories == null)
+            {
+                return new List<ItemTab>();
+            }
+            return Categories;
         }
-
-        public void SaveRecipe(IEnumerable<Recipe> recipes)
+        public void SaveCategories(IEnumerable<ItemTab> itemTabs)
         {
-            var serializedRecipes = JsonConvert.SerializeObject(recipes);
-            File.WriteAllText(_dataPath, serializedRecipes);
+            var serializedCategories = JsonConvert.SerializeObject(itemTabs, Formatting.Indented);
+            File.WriteAllText(_dataPath, serializedCategories);
         }
     }
 }

@@ -10,16 +10,18 @@ namespace LearningWPF.ViewModel
 {
     public class CategoryViewModel : PropertyChange
     {
-        ICategoryDataService _categoryDataSevice;
+        private ICategoryDataService _categoryDataSevice;
         private TabViewModel _tabVM;
         public TabViewModel TabVM
         {
             get { return _tabVM; }
             set { OnPropertyChanged(ref _tabVM, value); }
-        }
-        public CategoryViewModel()
+        }       
+        public CategoryViewModel(ICategoryDataService categoryDataSevice)
         {
-            TabVM = new TabViewModel();
+            TabVM = new TabViewModel(categoryDataSevice);
+            _categoryDataSevice = categoryDataSevice;
+            TabVM.LoadCategory(_categoryDataSevice.GetCategories());
         }
     }
 }

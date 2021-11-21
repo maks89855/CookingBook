@@ -26,11 +26,11 @@ namespace LearningWPF
             get { return _bookVM; }
             set { OnPropertyChanged(ref _bookVM, value); }
         }
+        
         public ViewRecipe()
         {
-            var dataService = new JsonFileService();
             var dialogService = new WindowDialogService();
-            BookVM = new RecipeViewModel(dataService, dialogService);
+            BookVM = new RecipeViewModel (dialogService);
             CurrentViewRecipe = BookVM;
         }
     }

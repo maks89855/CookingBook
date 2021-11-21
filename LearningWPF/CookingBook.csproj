@@ -63,7 +63,6 @@
     </ApplicationDefinition>
     <Compile Include="AppMain.cs" />
     <Compile Include="Service\ICategoryDataService.cs" />
-    <Compile Include="Service\JSON.cs" />
     <Compile Include="ViewModel\CategoryViewModel.cs" />
     <Compile Include="ViewRecipe.cs" />
     <Compile Include="Helpers\Converters.cs" />
