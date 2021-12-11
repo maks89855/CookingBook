@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
 using LearningWPF.Model;
 using LearningWPF.Service;
@@ -14,18 +15,6 @@ namespace LearningWPF.ViewModel
     public class TabViewModel : PropertyChange
     {
         #region Tabs
-        private int _id;
-        public int ID
-        {
-            get { return _id; }
-            set
-            {
-                _id = value;
-                OnPropertyChanged("ID");
-            }
-        }
-
-        private Random rnd = new Random(1000);
 
         private ICategoryDataService _categoryDataSevice;
 
@@ -43,12 +32,6 @@ namespace LearningWPF.ViewModel
                 OnPropertyChanged("SelectedCategory");
             }
         }
-        private ViewRecipe _viewRecipeVM;
-        public ViewRecipe ViewRecipeVM
-        {
-            get { return _viewRecipeVM; }
-            set { OnPropertyChanged(ref _viewRecipeVM, value); }
-        }
         public ICommand AddTabCommand { get; private set; }
 
         private object _currentViewRecipe;
@@ -63,19 +46,14 @@ namespace LearningWPF.ViewModel
             ItemTabs = new ObservableCollection<ItemTab>();
             AddTabCommand = new RelayCommand(AddTab);
             RemoveTabCommand = new RelayCommand(RemoveTab);
+            RenameTabCommand = new RelayCommand(RenameTab);
+            SaveTabCommand = new RelayCommand(SaveCategory);
             _categoryDataSevice = categoryDataSevice;
 
         }
-        private IRecipeDataSevice _dataService;
-        private IDialogService _dialogService;
         private void AddTab()
         {
-            ID = rnd.Next();
-            ItemTab item = new ItemTab()
-            {
-                Header = $"Tab {ID}",
-                ID = ID,
-        }; 
+            ItemTab item = new ItemTab();
             ItemTabs.Add(item);       
             SelectedCategory = item;
             _categoryDataSevice.SaveCategories(ItemTabs);
@@ -83,7 +61,17 @@ namespace LearningWPF.ViewModel
         public ICommand RemoveTabCommand { get; private set; }
         private void RemoveTab()
         {
-            ItemTabs.Remove(_selectedCategory);
+            ItemTabs.Remove(SelectedCategory);
+        }
+        public ICommand RenameTabCommand { get; private set; }
+        private void RenameTab()
+        {
+
+        }
+        public ICommand SaveTabCommand { get; private set; }
+        private void SaveCategory()
+        {
+            _categoryDataSevice.SaveCategories(ItemTabs);
         }
         public void LoadCategory(IEnumerable<ItemTab> itemTabs)
         {

@@ -64,7 +64,6 @@
     <Compile Include="AppMain.cs" />
     <Compile Include="Service\ICategoryDataService.cs" />
     <Compile Include="ViewModel\CategoryViewModel.cs" />
-    <Compile Include="ViewRecipe.cs" />
     <Compile Include="Helpers\Converters.cs" />
     <Compile Include="Model\ItemTab.cs" />
     <Compile Include="Service\IDialogService.cs" />
@@ -163,6 +162,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resourse\ItemList.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resourse\close.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

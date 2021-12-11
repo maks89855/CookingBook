@@ -7,35 +7,69 @@
              xmlns:tab="clr-namespace:LearningWPF.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="10*"/>
-        </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0" Background="White">
-            <Button Width="50" Height="30" HorizontalAlignment="Center" VerticalAlignment="Top" 
-                    Content="Add" Command="{Binding TabVM.AddTabCommand}"/>
-            <Button Width="50" Height="30" HorizontalAlignment="Center" VerticalAlignment="Bottom" 
-                    Content="Remove" Command="{Binding TabVM.RemoveTabCommand}"/>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="40*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Menu Margin="0">
+                <MenuItem Header="Сохранить" Command="{Binding TabVM.SaveTabCommand}">
+                    <MenuItem.ToolTip>
+                        <ToolTip>
+                            Сохранить
+                        </ToolTip>
+                    </MenuItem.ToolTip>
+                </MenuItem>
+                <MenuItem Header="Добавить категорию" Command="{Binding TabVM.AddTabCommand}">
+                    <MenuItem.ToolTip>
+                        <ToolTip>
+                            Добавит категорию
+                        </ToolTip>
+                    </MenuItem.ToolTip>
+                </MenuItem>
+                <MenuItem Header="Удалить категорию" Command="{Binding TabVM.RemoveTabCommand}">
+                    <MenuItem.ToolTip>
+                        <ToolTip>
+                            Удалить категорию
+                        </ToolTip>
+                    </MenuItem.ToolTip>
+                </MenuItem>
+                <MenuItem Header="Переименовать категорию" Command="{Binding TabVM.RenameTabCommand}">
+                    <MenuItem.ToolTip>
+                        <ToolTip>
+                            Переименовать категорию
+                        </ToolTip>
+                    </MenuItem.ToolTip>
+                </MenuItem>
+                <MenuItem Header="Удалить рецепт" 
+                          Command="{Binding TabVM.SelectedCategory.Content.RecipeVM.RemoveCommand}">
+                    <MenuItem.ToolTip>
+                        <ToolTip>
+                            Удалить рецепт
+                        </ToolTip>
+                    </MenuItem.ToolTip>
+                </MenuItem>
+            </Menu>
         </Grid>
-        <Grid Grid.Column="1">
-            <TabControl Background="White" 
+        <TabControl Background="White" 
             TabStripPlacement="Top"
             SelectedItem="{Binding TabVM.SelectedCategory}"
             ItemsSource="{Binding TabVM.ItemTabs, Mode=TwoWay}"             
-            Grid.Column="1">
-                <TabControl.ItemTemplate>
+            Grid.Row="1">
+            <TabControl.ItemTemplate>
                 <DataTemplate>
                     <TextBlock
-                    Text="{Binding Header}" />
+                    Text="{Binding Header, TargetNullValue=Категория}">
+                    </TextBlock>
                 </DataTemplate>
-                </TabControl.ItemTemplate>
-                <TabControl.ContentTemplate>
-                    <DataTemplate>
-                        <v:BookView/>
-                    </DataTemplate>
-                </TabControl.ContentTemplate>
-            </TabControl>
-        </Grid>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+                <DataTemplate>
+                    <v:BookView/>
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+        </TabControl>
     </Grid>
 </UserControl>

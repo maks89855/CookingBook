@@ -13,15 +13,28 @@
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="40*"/>
+            </Grid.RowDefinitions>
+            <TextBox Grid.Row="0" Background="#FFDAD8D8"/>
             <ListView ItemsSource="{Binding Content.RecipeVM.Recipes}" 
                         SelectedItem="{Binding Content.RecipeVM.SelectedRecipe}" 
                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                        ScrollViewer.VerticalScrollBarVisibility="Auto">
+                       ScrollViewer.VerticalScrollBarVisibility="Auto" Grid.Row="1">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <local:ItemsListBox/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Добавить рецепт" Command="{Binding Content.RecipeVM.AddCommand}"/>
+                        <MenuItem Header="Удалить рецепт" Command="{Binding Content.RecipeVM.RemoveCommand}"/>
+                        <MenuItem Header="Редактировать рецепт" Command="{Binding Content.RecipeVM.EditCommand}"/>
+                        <MenuItem Header="Сохранить рецепт" Command="{Binding Content.RecipeVM.SaveCommand}"/>
+                    </ContextMenu>
+                </ListView.ContextMenu>
             </ListView>
         </Grid>
         <Grid Grid.Column="1">

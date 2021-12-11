@@ -35,5 +35,10 @@ namespace LearningWPF.Service
             var serializedCategories = JsonConvert.SerializeObject(itemTabs, Formatting.Indented);
             File.WriteAllText(_dataPath, serializedCategories);
         }
+        public void SaveRecipe(IEnumerable<Recipe> recipes)
+        {
+            var serializedRecipe = JsonConvert.SerializeObject(recipes, Formatting.Indented);
+            File.WriteAllText(_dataPath, serializedRecipe);
+        }      
     }
 }

@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace LearningWPF.Model
@@ -23,8 +24,7 @@ namespace LearningWPF.Model
                 OnPropertyChanged("Header");
             }
         }
-        public int ID;
-       
+
         private RecipeViewModel _content;
         public RecipeViewModel Content
         {
@@ -34,14 +34,12 @@ namespace LearningWPF.Model
                 OnPropertyChanged(ref _content, value);
             }
         }
-        [NonSerialized]
-        private object _currentViewRecipe;
+        
         public ItemTab()
         {
             var dialogService = new WindowDialogService();
-            Content = new RecipeViewModel(dialogService);
-
+            var dataService = new JsonFileService();
+            Content = new RecipeViewModel(dialogService, dataService);
         }
-
     }   
 }

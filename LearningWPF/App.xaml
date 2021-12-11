@@ -34,38 +34,18 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Name="ButtonBorder" CornerRadius="0 0 0 10" BorderThickness="1" BorderBrush="Gray" Background="LightGray" Cursor="Hand">
+                        <Border Name="ButtonBorder" CornerRadius="0 0 0 10" BorderThickness="0" Background="{x:Null}" BorderBrush="Transparent" Cursor="Hand">
                             <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Style.Triggers>
-                <EventTrigger RoutedEvent="MouseEnter">
-                    <EventTrigger.Actions>
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation Storyboard.TargetProperty="Height" Duration="0:0:1" To="50"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger.Actions>
-                </EventTrigger>
-                <EventTrigger RoutedEvent="MouseLeave">
-                    <EventTrigger.Actions>
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation Storyboard.TargetProperty="Height" Duration="0:0:1" To="25"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger.Actions>
-                </EventTrigger>
-            </Style.Triggers>
         </Style>
         <Style x:Key="SaveButton" TargetType="Button">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Name="ButtonBorder" CornerRadius="0 0 10 0" BorderThickness="1" BorderBrush="Gray" Background="LightGray" Cursor="Hand">
+                        <Border Name="ButtonBorder" CornerRadius="0 0 0 10" BorderThickness="1" BorderBrush="Gray" Background="LightGray" Cursor="Hand">
                             <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
@@ -91,7 +71,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Name="ButtonBorder" CornerRadius="10 0 0 10" BorderThickness="1" BorderBrush="Gray" Background="LightGray" Cursor="Hand">
+                        <Border Name="ButtonBorder" CornerRadius="10 0 0 10" BorderThickness="0" Background="{x:Null}" BorderBrush="Transparent" Cursor="Hand">
                             <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>

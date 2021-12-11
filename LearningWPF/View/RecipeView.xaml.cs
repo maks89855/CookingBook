@@ -25,5 +25,10 @@ namespace LearningWPF.View
         {
             InitializeComponent();
         }
+
+        private void Grid_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

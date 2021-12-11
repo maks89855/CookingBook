@@ -23,6 +23,7 @@ namespace LearningWPF.View
         public CategoryView()
         {
             InitializeComponent();
+           
         }
     }
 }

@@ -13,6 +13,6 @@ namespace LearningWPF.Service
         void SaveCategories(IEnumerable<ItemTab> itemTabs);
 
         //IEnumerable<Recipe> GetRecipes();
-        //void SaveRecipe(IEnumerable<Recipe> recipes);
+        void SaveRecipe(IEnumerable<Recipe> recipes);
     }
 }

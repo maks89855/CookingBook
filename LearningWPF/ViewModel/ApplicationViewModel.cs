@@ -32,7 +32,6 @@ namespace LearningWPF
                 OnPropertyChanged("SelectedRecipe");
             }
         }
-
         private IRecipeDataSevice _dataService;
         private IDialogService _dialogService;
         private ICategoryDataService _categoryDataService;
@@ -118,7 +117,6 @@ namespace LearningWPF
             }
             else
             {
-                _dataService.SaveRecipe(Recipes);
                 IsEditMode = false;
                 OnPropertyChanged("SelectedRecipe");
             }
@@ -134,7 +132,7 @@ namespace LearningWPF
             SelectedRecipe.ImagePath = _dialogService.OpenFile("Image files|*.bmp;*.jpg;*.jpeg;*.png|All files");
         }
 
-        public ApplicationViewModel(IDialogService dialogService)
+        public ApplicationViewModel(IDialogService dialogService, ICategoryDataService categoryDataService)
         {
             AddCommand = new RelayCommand(Add);
             RemoveCommand = new RelayCommand(Remove);
@@ -142,13 +140,9 @@ namespace LearningWPF
             SaveCommand = new RelayCommand(Save, IsEdit);
             AddImageCommand = new RelayCommand(AddImage, IsEdit);
             //_dataService = dataSevice;
+            _categoryDataService = categoryDataService;
             Recipes = new ObservableCollection<Recipe>();
             _dialogService = dialogService;
-        }
-        public void LoadRecipe(IEnumerable<Recipe> recipes)
-        {
-            Recipes = new ObservableCollection<Recipe>(recipes);
-            OnPropertyChanged("Recipes");
         }
     }
 }
