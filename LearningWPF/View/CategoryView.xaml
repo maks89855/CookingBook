@@ -36,7 +36,7 @@
                         </ToolTip>
                     </MenuItem.ToolTip>
                 </MenuItem>
-                <MenuItem Header="Переименовать категорию" Command="{Binding TabVM.RenameTabCommand}">
+                <MenuItem Header="Переименовать категорию" Command="{Binding TabVM.SelectedCategory.RenameTabCommand}">
                     <MenuItem.ToolTip>
                         <ToolTip>
                             Переименовать категорию
@@ -58,11 +58,14 @@
             SelectedItem="{Binding TabVM.SelectedCategory}"
             ItemsSource="{Binding TabVM.ItemTabs, Mode=TwoWay}"             
             Grid.Row="1">
-            <TabControl.ItemTemplate>
+            <TabControl.ItemTemplate >
                 <DataTemplate>
-                    <TextBlock
-                    Text="{Binding Header, TargetNullValue=Категория}">
-                    </TextBlock>
+                    <Grid>
+                        <Label Content="{Binding Header}"
+                               Visibility="{Binding IsDefaultMode, Converter={StaticResource IsEditConverter}}"/>
+                        <TextBox Text="{Binding Header}"
+                                 Visibility="{Binding IsEditTabMode, Converter={StaticResource IsEditConverter}}"/>
+                    </Grid>
                 </DataTemplate>
             </TabControl.ItemTemplate>
             <TabControl.ContentTemplate>

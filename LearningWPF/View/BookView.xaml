@@ -17,7 +17,8 @@
                 <RowDefinition/>
                 <RowDefinition Height="40*"/>
             </Grid.RowDefinitions>
-            <TextBox Grid.Row="0" Background="#FFDAD8D8"/>
+            <TextBox Grid.Row="0" Background="#FFDAD8D8" Text="{Binding Content.RecipeVM.RecipesFilter,
+                UpdateSourceTrigger=PropertyChanged}"/>
             <ListView ItemsSource="{Binding Content.RecipeVM.Recipes}" 
                         SelectedItem="{Binding Content.RecipeVM.SelectedRecipe}" 
                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"

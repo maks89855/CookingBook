@@ -10,25 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace LearningWPF.View
 {
     /// <summary>
-    /// Логика взаимодействия для CategoryView.xaml
+    /// Логика взаимодействия для RenameView.xaml
     /// </summary>
-    public partial class CategoryView : UserControl
+    public partial class RenameView : Window
     {
-        public CategoryView()
+        public RenameView()
         {
             InitializeComponent();
-          
-        }
-
-        private void TxBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            IsEnabled = true;
         }
     }
 }

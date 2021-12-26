@@ -7,11 +7,13 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 using System.Windows.Input;
 using System.Windows;
 using Microsoft.Win32;
 using LearningWPF.Util;
 using LearningWPF.Model;
+using System.IO;
 
 namespace LearningWPF
 {
@@ -20,9 +22,9 @@ namespace LearningWPF
     /// </summary>
     public class ApplicationViewModel : PropertyChange
     {
-        [NonSerialized]
         private Recipe _selectedRecipe;
         public ObservableCollection<Recipe> Recipes { get; set; }
+        public ICollectionView RecipeView { get; }
         public Recipe SelectedRecipe
         {
             get { return _selectedRecipe; }
@@ -71,6 +73,7 @@ namespace LearningWPF
         /// </summary>
 
         public ICommand EditCommand { get; private set; }
+
         private bool _isEditMode;
         public bool IsEditMode
         {
@@ -126,10 +129,31 @@ namespace LearningWPF
         /// Команда "Изменение картинки"
         /// </summary>
 
+        //TODO: Копировать изображения в папку с программой
         public ICommand AddImageCommand { get; set; }
+        //TODO: Перевод изображения в бинарный код
         private void AddImage()
         {
-            SelectedRecipe.ImagePath = _dialogService.OpenFile("Image files|*.bmp;*.jpg;*.jpeg;*.png|All files");
+            if (Directory.Exists(@".\Image"))
+            {
+                string Path = _dialogService.OpenFile("Image files|(*.bmp);*.jpg;*.jpeg;*.png|All files");
+                if(Path == null){}
+                else
+                {
+                    string ToBase64String = Convert.ToBase64String(File.ReadAllBytes(Path));
+                    var image = Image.FromStream(new MemoryStream(Convert.FromBase64String(ToBase64String)));
+                    Random rnd = new Random();
+                    int x = rnd.Next();
+                    image.Save($@".\Image\file{x}.jpeg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                    FileInfo f = new FileInfo($@".\Image\file{x}.jpeg");
+                    string p = f.FullName;
+                    SelectedRecipe.ImagePath = p;
+                }
+            }
+            else
+            {
+                Directory.CreateDirectory(@".\Image");
+            }
         }
 
         public ApplicationViewModel(IDialogService dialogService, ICategoryDataService categoryDataService)
@@ -142,7 +166,29 @@ namespace LearningWPF
             //_dataService = dataSevice;
             _categoryDataService = categoryDataService;
             Recipes = new ObservableCollection<Recipe>();
+            //RecipeView = System.Windows.Data.CollectionViewSource.GetDefaultView(Recipes);
+            //RecipeView.Filter = FilterRecipes;
+            //RecipeView.SortDescriptions.Add(new SortDescription(nameof(Recipe.NameRecipe), ListSortDirection.Ascending));
             _dialogService = dialogService;
+        }
+        private bool FilterRecipes(Object obj)
+        {
+            if(obj is Recipe recipe)
+            {
+                return recipe.NameRecipe.Contains(RecipesFilter);
+            }
+            return false;
+        }
+        private string _recipesFilter = string.Empty;
+        public string RecipesFilter
+        {
+            get { return _recipesFilter; }
+            set
+            {
+                _recipesFilter = value;
+                OnPropertyChanged("RecipesFilter");
+                //RecipeView.Refresh();
+            }
         }
     }
 }

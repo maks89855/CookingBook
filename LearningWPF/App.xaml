@@ -83,6 +83,13 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="CloseButton" TargetType="Button">
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Background" Value="Red"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         <!--<TextBox x:Key="TextB">
             <TextBox.Template>
                 <ControlTemplate TargetType="TextBox">

@@ -7,6 +7,7 @@
         xmlns:v="clr-namespace:LearningWPF.View"
         mc:Ignorable="d"
         Title="Cooking Book" Height="900" Width="1150" WindowStartupLocation="CenterScreen">
+    <!--AllowsTransparency="True" WindowStyle="None" Background="Transparent"-->
     <Window.DataContext>
         <local:AppMain/>
     </Window.DataContext>
@@ -19,7 +20,43 @@
         </Style>
     </Window.Resources>
     <Grid>
+        <!--<Border CornerRadius="15" BorderBrush="Black" BorderThickness="1" Background="#FF6BB8FB">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="50*"/>
+                </Grid.RowDefinitions>
+                <DockPanel Grid.Row="0" HorizontalAlignment="Right">
+                    <Button DockPanel.Dock="Right" Width="40" Margin="0,0,13,0" Click="Button_Click_1"/>
+                    <Button DockPanel.Dock="Right" Width="40" Margin="0,0,13,0" Click="Button_Click_2"/>
+                </DockPanel>
+                <Grid Background="White" Width="1122" Height="870" Grid.Row="1">
+                    <ContentControl Content="{Binding CurrentViewCategory}"/>
+                </Grid>
+            </Grid>
+
+        </Border>-->
         <ContentControl Content="{Binding CurrentViewCategory}"/>
+        <!--<Grid Visibility="Collapsed" x:Name="ModelWindow">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBox Grid.Row="1"/>
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Content="Принять"/>
+                    <Button Grid.Column="1" Content="Отменить"/>
+                </Grid>
+            </Grid>
+        </Grid>-->
     </Grid>
 </Window>
     

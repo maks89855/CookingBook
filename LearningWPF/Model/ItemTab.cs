@@ -24,6 +24,16 @@ namespace LearningWPF.Model
                 OnPropertyChanged("Header");
             }
         }
+        private TextBox _textBox;
+        public TextBox TextBox
+        {
+            get { return _textBox; }
+            set
+            {
+                _textBox = value;
+                OnPropertyChanged("TextBox");
+            }
+        }
 
         private RecipeViewModel _content;
         public RecipeViewModel Content
@@ -34,12 +44,38 @@ namespace LearningWPF.Model
                 OnPropertyChanged(ref _content, value);
             }
         }
-        
+        //TODO: Нарушение паттерна MVVM. Исправить!
+        public ICommand RenameTabCommand { get; private set; }
+
+        private bool _isEditTabMode;
+        public bool IsEditTabMode
+        {
+            get { return _isEditTabMode; }
+            set
+            {
+                OnPropertyChanged(ref _isEditTabMode, value);
+                OnPropertyChanged("IsDefaultMode");
+            }
+        }
+        public bool IsDefaultMode
+        {
+            get { return !_isEditTabMode; }
+        }
+        private bool IsEdit()
+        {
+            return IsEditTabMode;
+        }
+        private void Edit()
+        {
+            IsEditTabMode = true;
+        }
         public ItemTab()
         {
             var dialogService = new WindowDialogService();
             var dataService = new JsonFileService();
+            RenameTabCommand = new RelayCommand(Edit);
             Content = new RecipeViewModel(dialogService, dataService);
         }
     }   
 }
+//TODO: Добавить триггеры в TabBox в CategoryView.xaml на текст
