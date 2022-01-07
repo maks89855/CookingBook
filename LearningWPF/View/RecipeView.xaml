@@ -5,14 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LearningWPF.View"
              mc:Ignorable="d" 
-             d:DesignHeight="870" d:DesignWidth="894">
+             d:DesignHeight="870" d:DesignWidth="894" FontFamily="Arial">
     
     <Grid Visibility="{Binding SelectedRecipe, Converter={StaticResource SelectedRecipeConverter}}">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="4*"/>
-            <RowDefinition Height="4*"/>
-            <RowDefinition Height="4*"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
         <TextBox Text="{Binding SelectedRecipe.NameRecipe}" 
                 Visibility="{Binding IsEditMode, Converter={StaticResource IsEditConverter}}" 
@@ -21,47 +21,57 @@
         <Label Content="{Binding SelectedRecipe.NameRecipe}"
                HorizontalAlignment="Center" VerticalAlignment="Center"
                FontSize="20" FontFamily="Arial"
-               Visibility="{Binding IsDisplayMode, Converter={StaticResource IsEditConverter}}"/>
-        <Grid Grid.Row="1" Background="White">
+               Visibility="{Binding IsDisplayMode, Converter={StaticResource IsEditConverter}}" FontWeight="Bold"/>
+        <Grid Grid.Row="1" Background="White" >
             <Image Grid.Row="1"  Source="{Binding SelectedRecipe.ImagePath,
                         FallbackValue={StaticResource DefaultContactImage},
-                        TargetNullValue={StaticResource DefaultContactImage}}"/>
+                        TargetNullValue={StaticResource DefaultContactImage}}"
+            Visibility="{Binding IsDisplayMode, Converter={StaticResource IsEditConverter}}" 
+                   Width="350" Height="350"      
+                   />
             <Button Style="{DynamicResource AddImageButton}" Width="400px"
                     Command="{Binding AddImageCommand}"
                     Visibility="{Binding IsEditMode, Converter={StaticResource IsEditConverter}}" 
                     Background="{x:Null}" BorderBrush="Transparent" Cursor="Hand">
                 <Image Grid.Row="1" Source="{Binding SelectedRecipe.ImagePath,
                         FallbackValue={StaticResource DefaultContactImage},
-                        TargetNullValue={StaticResource DefaultContactImage}}"/>
+                        TargetNullValue={StaticResource DefaultContactImage}}" Width="350" Height="350"/>
             </Button>
         </Grid>
         <Grid Grid.Row="2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.4*"/>
+                <RowDefinition Height="0.6*"/>
                 <RowDefinition Height="5*"/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Padding="10 0 0 0" Text="Состав" Background="White"/>
-            <Label Grid.Row="1" Content="{Binding SelectedRecipe.СompositionOfTheDish}"
-               FontSize="14" FontFamily="Arial"
+            <TextBlock Grid.Row="0" Padding="10 0 0 0" HorizontalAlignment="Left"
+                       Text="Состав" Background="White" FontFamily="Arial" FontSize="16" FontWeight="Bold"/>
+            <TextBlock Grid.Row="1" Text="{Binding SelectedRecipe.СompositionOfTheDish}"
+               FontSize="14" FontFamily="Arial" TextWrapping="Wrap"
                Visibility="{Binding IsDisplayMode, Converter={StaticResource IsEditConverter}}"/>
-            <TextBox Grid.Row="1" Text="{Binding SelectedRecipe.СompositionOfTheDish}"
-                     AcceptsReturn="True"
+            <Border Grid.Row="1">
+                <TextBox Text="{Binding SelectedRecipe.СompositionOfTheDish}"
+                     AcceptsReturn="True" TextWrapping="Wrap"
                  Visibility="{Binding IsEditMode, Converter={StaticResource IsEditConverter}}" 
-                     SpellCheck.IsEnabled="True"/>
-
+                     SpellCheck.IsEnabled="True" AcceptsTab="True" FontSize="14">
+                </TextBox>
+            </Border>
         </Grid>
         <Grid Grid.Row="3">
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.4*"/>
+                <RowDefinition Height="0.6*"/>
                 <RowDefinition Height="5*"/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Padding="10 0 0 0" Text="Способ приготовления" Background="White"/>
-            <Label Grid.Row="1"  Content="{Binding SelectedRecipe.CookingMethod}"
-               FontSize="14" FontFamily="Arial"
+            <TextBlock Grid.Row="0" HorizontalAlignment="Left" Padding="10 0 0 0" 
+                       Text="Способ приготовления" Background="White" FontFamily="Arial" FontSize="16" 
+                       FontWeight="Bold"/>
+            <TextBlock Grid.Row="1"  Text="{Binding SelectedRecipe.CookingMethod}"
+               FontSize="14" FontFamily="Arial" TextWrapping="Wrap"
                Visibility="{Binding IsDisplayMode, Converter={StaticResource IsEditConverter}}"/>
             <TextBox Grid.Row="1"  Text="{Binding SelectedRecipe.CookingMethod}"
                      AcceptsReturn="True"
-                 Visibility="{Binding IsEditMode, Converter={StaticResource IsEditConverter}}"/>
+                     TextWrapping="Wrap"
+                 Visibility="{Binding IsEditMode, Converter={StaticResource IsEditConverter}}" 
+                      AcceptsTab="True"/>
         </Grid>
         <Grid HorizontalAlignment="Right" VerticalAlignment="Top">
             <Grid.RowDefinitions>

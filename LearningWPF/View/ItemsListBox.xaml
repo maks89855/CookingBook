@@ -7,11 +7,11 @@
              mc:Ignorable="d" 
              Width="240" Height="30">
     <Grid>
-        <Grid.ColumnDefinitions>
+        <!--<Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.5*"/>
             <ColumnDefinition Width="5*"/>
-        </Grid.ColumnDefinitions>
-        <Image Source="/LearningWPF;component/Resourse/ItemList.png"/>
+        </Grid.ColumnDefinitions>-->
+        <!--<Image Source="/LearningWPF;component/Resourse/ItemList.png"/>-->
         <TextBlock Grid.Column="1" FontSize="14" FontFamily="Arial" 
                    Text="{Binding Path=NameRecipe}" 
                    VerticalAlignment="Center" HorizontalAlignment="Left"

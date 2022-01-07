@@ -49,8 +49,6 @@ namespace LearningWPF
             var newContact = new Recipe
             {
                 NameRecipe = "Название рецепта",
-                СompositionOfTheDish = "Состав",
-                CookingMethod = "Способ приготовления"
             };
             Recipes.Add(newContact);
             SelectedRecipe = newContact;

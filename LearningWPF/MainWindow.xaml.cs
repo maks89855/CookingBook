@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows;
-
 using System.Data;
 using System.Configuration;
 using LearningWPF.Service;

@@ -14,15 +14,15 @@
 
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition Height="40*"/>
+                <!--<RowDefinition/>
+                <RowDefinition Height="40*"/>-->
             </Grid.RowDefinitions>
-            <TextBox Grid.Row="0" Background="#FFDAD8D8" Text="{Binding Content.RecipeVM.RecipesFilter,
-                UpdateSourceTrigger=PropertyChanged}"/>
+            <!--<TextBox Grid.Row="0" Background="#FFDAD8D8" Text="{Binding Content.RecipeVM.RecipesFilter,
+                UpdateSourceTrigger=PropertyChanged}"/>-->
             <ListView ItemsSource="{Binding Content.RecipeVM.Recipes}" 
                         SelectedItem="{Binding Content.RecipeVM.SelectedRecipe}" 
                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                       ScrollViewer.VerticalScrollBarVisibility="Auto" Grid.Row="1">
+                       ScrollViewer.VerticalScrollBarVisibility="Auto" Grid.Row="1" Margin="0,4,0,-4">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <local:ItemsListBox/>
@@ -38,15 +38,15 @@
                 </ListView.ContextMenu>
             </ListView>
         </Grid>
-        <Grid Grid.Column="1">
+        <Grid Grid.Column="1" Margin="10,0,0,0" >
             <ContentControl>
                 <ContentControl.Content>
                     <local:RecipeView DataContext="{Binding Content.RecipeVM}"/>
                 </ContentControl.Content>
             </ContentControl>
         </Grid>
-        <Button Command="{Binding Content.RecipeVM.AddCommand}" 
+        <!--<Button Command="{Binding Content.RecipeVM.AddCommand}" 
                 Style="{StaticResource AddButton}" Width="130" Height="25" 
-                VerticalAlignment="Bottom" Content="Добавление рецепта"/>
+                VerticalAlignment="Bottom" Content="Добавление рецепта"/>-->
     </Grid>
 </UserControl>
