@@ -7,64 +7,84 @@
              xmlns:tab="clr-namespace:LearningWPF.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="40*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="30*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <Menu Margin="0">
-                <MenuItem Header="Сохранить" Command="{Binding TabVM.SaveTabCommand}">
-                    <MenuItem.ToolTip>
-                        <ToolTip>
-                            Сохранить
-                        </ToolTip>
-                    </MenuItem.ToolTip>
-                </MenuItem>
-                <MenuItem Header="Добавить категорию" Command="{Binding TabVM.AddTabCommand}">
-                    <MenuItem.ToolTip>
-                        <ToolTip>
-                            Добавит категорию
-                        </ToolTip>
-                    </MenuItem.ToolTip>
-                </MenuItem>
-                <MenuItem Header="Удалить категорию" Command="{Binding TabVM.RemoveTabCommand}">
-                    <MenuItem.ToolTip>
-                        <ToolTip>
-                            Удалить категорию
-                        </ToolTip>
-                    </MenuItem.ToolTip>
-                </MenuItem>
-                <MenuItem Header="Переименовать категорию" Command="{Binding TabVM.SelectedCategory.RenameTabCommand}">
-                    <MenuItem.ToolTip>
-                        <ToolTip>
-                            Переименовать категорию
-                        </ToolTip>
-                    </MenuItem.ToolTip>
-                </MenuItem>
-                <MenuItem Header="Удалить рецепт" 
-                          Command="{Binding TabVM.SelectedCategory.Content.RecipeVM.RemoveCommand}">
-                    <MenuItem.ToolTip>
-                        <ToolTip>
-                            Удалить рецепт
-                        </ToolTip>
-                    </MenuItem.ToolTip>
-                </MenuItem>
-            </Menu>
+            <Border HorizontalAlignment="Center" VerticalAlignment="Center" 
+                    CornerRadius="8" BorderThickness="1">
+                <Border.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                        <GradientStop Color="#FFD4D4D4" Offset="0"/>
+                        <GradientStop Color="White"/>
+                        <GradientStop Color="#FFDADADA" Offset="0.97"/>
+                    </LinearGradientBrush>
+                </Border.BorderBrush>
+                <Menu HorizontalAlignment="Center" VerticalAlignment="Center" Background="White" 
+                      Margin="5,2" >
+                    <MenuItem Header="Сохранить" Command="{Binding TabVM.SaveTabCommand}">
+                        <MenuItem.ToolTip>
+                            <ToolTip>
+                                Сохранить
+                            </ToolTip>
+                        </MenuItem.ToolTip>
+                    </MenuItem>
+                    <MenuItem Header="Добавить категорию" Command="{Binding TabVM.AddTabCommand}">
+                        <MenuItem.ToolTip>
+                            <ToolTip>
+                                Добавит категорию
+                            </ToolTip>
+                        </MenuItem.ToolTip>
+                    </MenuItem>
+                    <MenuItem Header="Удалить категорию" Command="{Binding TabVM.RemoveTabCommand}">
+                        <MenuItem.ToolTip>
+                            <ToolTip>
+                                Удалить категорию
+                            </ToolTip>
+                        </MenuItem.ToolTip>
+                    </MenuItem>
+                    <MenuItem Header="Переименовать категорию" Command="{Binding TabVM.SelectedCategory.RenameTabCommand}">
+                        <MenuItem.ToolTip>
+                            <ToolTip>
+                                Переименовать категорию
+                            </ToolTip>
+                        </MenuItem.ToolTip>
+                    </MenuItem>
+                    <MenuItem Header="Добавить рецепт" 
+                              Command="{Binding TabVM.SelectedCategory.Content.RecipeVM.AddCommand}">
+                        <MenuItem.ToolTip>
+                            <ToolTip>
+                                Удалить рецепт
+                            </ToolTip>
+                        </MenuItem.ToolTip>
+                    </MenuItem>
+                    <MenuItem Header="Удалить рецепт" 
+                              Command="{Binding TabVM.SelectedCategory.Content.RecipeVM.RemoveCommand}">
+                        <MenuItem.ToolTip>
+                            <ToolTip>
+                                Удалить рецепт
+                            </ToolTip>
+                        </MenuItem.ToolTip>
+                    </MenuItem>
+                </Menu>
+            </Border>
         </Grid>
         <TabControl Background="White" 
             TabStripPlacement="Top"
             SelectedItem="{Binding TabVM.SelectedCategory}"
             ItemsSource="{Binding TabVM.ItemTabs, Mode=TwoWay}"             
             Grid.Row="1">
-            <TabControl.ItemTemplate >
+            <TabControl.ItemTemplate>
                 <DataTemplate>
                     <Grid>
-                        <Label Content="{Binding Header}"
-                               Visibility="{Binding IsDefaultMode, Converter={StaticResource IsEditConverter}}"/>
-                        <TextBox Text="{Binding Header}"
-                                 Visibility="{Binding IsEditTabMode, Converter={StaticResource IsEditConverter}}"/>
+                        <Label Content="{Binding Category}"
+                               Visibility="{Binding IsDefaultMode, 
+                            Converter={StaticResource IsEditConverter}}"/>
+                        <TextBox Text="{Binding Category}"
+                                 Visibility="{Binding IsEditTabMode, 
+                            Converter={StaticResource IsEditConverter}}"/>
                     </Grid>
                 </DataTemplate>
             </TabControl.ItemTemplate>
@@ -73,6 +93,21 @@
                     <v:BookView/>
                 </DataTemplate>
             </TabControl.ContentTemplate>
+            <TabControl.Template>
+                <ControlTemplate TargetType="{x:Type TabControl}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                            <TabPanel x:Name="HeaderPanel" IsItemsHost="True" Margin="0,2,0,0"/>
+                        </ScrollViewer>
+                        <ContentPresenter x:Name="PART_SelectedContentHost" Margin="4" 
+                                          ContentSource="SelectedContent" Grid.Row="1"/>
+                    </Grid>
+                </ControlTemplate>
+            </TabControl.Template>
         </TabControl>
     </Grid>
 </UserControl>

@@ -14,24 +14,16 @@ namespace LearningWPF.Model
 {
     public class ItemTab: PropertyChange
     {
-        private string _header;
-        public string Header 
+        public int ID { get; set; }
+
+        private string _category;
+        public string Category 
         {
-            get { return _header; }
+            get { return _category; }
             set
             {
-                _header = value;
+                _category = value;
                 OnPropertyChanged("Header");
-            }
-        }
-        private TextBox _textBox;
-        public TextBox TextBox
-        {
-            get { return _textBox; }
-            set
-            {
-                _textBox = value;
-                OnPropertyChanged("TextBox");
             }
         }
 
@@ -44,7 +36,6 @@ namespace LearningWPF.Model
                 OnPropertyChanged(ref _content, value);
             }
         }
-        //TODO: Нарушение паттерна MVVM. Исправить!
         public ICommand RenameTabCommand { get; private set; }
 
         private bool _isEditTabMode;
@@ -78,4 +69,3 @@ namespace LearningWPF.Model
         }
     }   
 }
-//TODO: Добавить триггеры в TabBox в CategoryView.xaml на текст

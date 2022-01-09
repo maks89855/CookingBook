@@ -14,6 +14,8 @@ using Microsoft.Win32;
 using LearningWPF.Util;
 using LearningWPF.Model;
 using System.IO;
+using LearningWPF.ViewModel;
+using System.Data.OleDb;
 
 namespace LearningWPF
 {
@@ -22,9 +24,13 @@ namespace LearningWPF
     /// </summary>
     public class ApplicationViewModel : PropertyChange
     {
+        #region Свойства
+        //private OleDbConnection _connection;
+
         private Recipe _selectedRecipe;
+        public ICollectionView RecipeView { get; set; }
         public ObservableCollection<Recipe> Recipes { get; set; }
-        public ICollectionView RecipeView { get; }
+
         public Recipe SelectedRecipe
         {
             get { return _selectedRecipe; }
@@ -37,24 +43,32 @@ namespace LearningWPF
         private IRecipeDataSevice _dataService;
         private IDialogService _dialogService;
         private ICategoryDataService _categoryDataService;
+        #endregion
 
         /// <summary>
         /// Команда "Добавить"
         /// </summary>
         
         public ICommand AddCommand { get; private set; }
-       
         private void Add()
         {
+            //TODO: Создать запрос 1
+            //_connection.Open();
             var newContact = new Recipe
             {
                 NameRecipe = "Название рецепта",
-            };
+            };           
             Recipes.Add(newContact);
             SelectedRecipe = newContact;
             //_dataService.SaveRecipe(Recipes);
             IsEditMode = false;
             OnPropertyChanged("SelectedRecipe");
+            //string Recipe = $"" +
+            //    $"INSERT INTO Recipe (NameRecipe) " +
+            //    $"VALUES ('Название рецепта')";
+            //OleDbCommand oleDbCommand = new OleDbCommand(Recipe, _connection);
+            //oleDbCommand.ExecuteNonQuery();
+            //_connection.Close();
         }
 
         /// <summary>
@@ -63,9 +77,17 @@ namespace LearningWPF
         public ICommand RemoveCommand { get; private set; }
         private void Remove()
         {
+            //TODO: Создать запрос 2
+            //_connection.Open();
+            //string Recipe = $"" +
+            //    $"DELETE FROM Recipe " +
+            //    $"WHERE NameRecipe='{_selectedRecipe.NameRecipe}'";
             Recipes.Remove(SelectedRecipe);
+            //OleDbCommand oleDbCommand = new OleDbCommand(Recipe, _connection);
+            //oleDbCommand.ExecuteNonQuery();
+            //_connection.Close();
         }
-
+        #region Редактирование
         /// <summary>
         /// Команда "Редактировать"
         /// </summary>
@@ -102,13 +124,12 @@ namespace LearningWPF
         {
             get { return !_isEditMode; }
         }
+        #endregion
 
         /// <summary>
         /// Команда "Сохранения"
         /// </summary>
-
         public ICommand SaveCommand { get; private set; }
-
         private void Save()
         {
             if (_selectedRecipe.NameRecipe.Length == 0)
@@ -118,16 +139,21 @@ namespace LearningWPF
             }
             else
             {
+                //_connection.Open();
+                //string Recipe = $"" +
+                //    $"INSERT INTO Recipe (NameRecipe, CompositionOfTheDish, CookingMethod) " +
+                //    $"VALUES ('{_selectedRecipe.NameRecipe}','{_selectedRecipe.СompositionOfTheDish}','{_selectedRecipe.CookingMethod}') ";
                 IsEditMode = false;
                 OnPropertyChanged("SelectedRecipe");
+                //OleDbCommand oleDbCommand = new OleDbCommand(Recipe, _connection);
+                //oleDbCommand.ExecuteNonQuery();
+                //_connection.Close();
             }
         }
-
+        #region Операции с изображением
         /// <summary>
         /// Команда "Изменение картинки"
         /// </summary>
-
-        //TODO: Копировать изображения в папку с программой
         public ICommand AddImageCommand { get; set; }
         //TODO: Перевод изображения в бинарный код
         private void AddImage()
@@ -153,7 +179,8 @@ namespace LearningWPF
                 Directory.CreateDirectory(@".\Image");
             }
         }
-
+        #endregion
+        #region Конструктор
         public ApplicationViewModel(IDialogService dialogService, ICategoryDataService categoryDataService)
         {
             AddCommand = new RelayCommand(Add);
@@ -168,7 +195,10 @@ namespace LearningWPF
             //RecipeView.Filter = FilterRecipes;
             //RecipeView.SortDescriptions.Add(new SortDescription(nameof(Recipe.NameRecipe), ListSortDirection.Ascending));
             _dialogService = dialogService;
+            //_connection = new OleDbConnection(TabViewModel.ConnectString);
         }
+        #endregion
+        #region Фильтр
         private bool FilterRecipes(Object obj)
         {
             if(obj is Recipe recipe)
@@ -188,5 +218,6 @@ namespace LearningWPF
                 //RecipeView.Refresh();
             }
         }
+        #endregion
     }
 }

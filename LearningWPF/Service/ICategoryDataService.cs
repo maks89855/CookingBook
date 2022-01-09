@@ -10,10 +10,10 @@ namespace LearningWPF.Service
 {
     public interface ICategoryDataService
     {
-        IEnumerable<ItemTab> GetCategories();
-        void SaveCategories(IEnumerable<ItemTab> itemTabs);
+        ICollection<ItemTab> GetCategories();
+        void SaveCategories(ICollection<ItemTab> itemTabs);
 
         //IEnumerable<Recipe> GetRecipes();
-        void SaveRecipe(IEnumerable<Recipe> recipes);
+        void SaveRecipe(ICollection<Recipe> recipes);
     }
 }

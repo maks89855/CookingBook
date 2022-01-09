@@ -6,15 +6,17 @@
              xmlns:local="clr-namespace:LearningWPF.View"
              mc:Ignorable="d" 
              Width="240" Height="30">
-    <Grid>
-        <!--<Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.5*"/>
-            <ColumnDefinition Width="5*"/>
-        </Grid.ColumnDefinitions>-->
-        <!--<Image Source="/LearningWPF;component/Resourse/ItemList.png"/>-->
-        <TextBlock Grid.Column="1" FontSize="14" FontFamily="Arial" 
-                   Text="{Binding Path=NameRecipe}" 
-                   VerticalAlignment="Center" HorizontalAlignment="Left"
-                   Padding="5"/>
-    </Grid>
+    <Border CornerRadius="5" BorderThickness="1">
+        <Grid>
+            <!--<Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>-->
+            <!--<Image Source="/LearningWPF;component/Resourse/ItemList.png"/>-->
+            <TextBlock Grid.Column="1" FontSize="14" FontFamily="Arial" 
+                       Text="{Binding Path=NameRecipe}" 
+                       VerticalAlignment="Center" HorizontalAlignment="Left"
+                       Padding="5"/>
+        </Grid>
+    </Border>
 </UserControl>

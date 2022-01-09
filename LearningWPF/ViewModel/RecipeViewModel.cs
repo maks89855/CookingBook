@@ -23,8 +23,6 @@ namespace LearningWPF.ViewModel
         public RecipeViewModel(IDialogService dialogService, ICategoryDataService categoryDataService)
         {
             RecipeVM = new ApplicationViewModel(dialogService, categoryDataService);
-            //_dataService = dataSevice;
-            //RecipeVM.LoadRecipe(_dataService.GetRecipes());
         }
     }
 }

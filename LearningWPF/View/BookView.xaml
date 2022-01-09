@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LearningWPF.View"
              mc:Ignorable="d" 
-             d:DesignHeight="870" d:DesignWidth="1150">
+             d:DesignHeight="900" d:DesignWidth="1150">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
@@ -14,31 +14,53 @@
 
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
-                <!--<RowDefinition/>
-                <RowDefinition Height="40*"/>-->
+                <!--<RowDefinition/>-->
+                <RowDefinition Height="40*"/>
             </Grid.RowDefinitions>
             <!--<TextBox Grid.Row="0" Background="#FFDAD8D8" Text="{Binding Content.RecipeVM.RecipesFilter,
                 UpdateSourceTrigger=PropertyChanged}"/>-->
-            <ListView ItemsSource="{Binding Content.RecipeVM.Recipes}" 
+            <Border CornerRadius="9" BorderThickness="0." BorderBrush="Black"  
+                    Background="#FFF3F1F1" Margin="0,0,0,4">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    
+
+                <ListView ItemsSource="{Binding Content.RecipeVM.Recipes}"
                         SelectedItem="{Binding Content.RecipeVM.SelectedRecipe}" 
                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                       ScrollViewer.VerticalScrollBarVisibility="Auto" Grid.Row="1" Margin="0,4,0,-4">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <local:ItemsListBox/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-                <ListView.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="Добавить рецепт" Command="{Binding Content.RecipeVM.AddCommand}"/>
-                        <MenuItem Header="Удалить рецепт" Command="{Binding Content.RecipeVM.RemoveCommand}"/>
-                        <MenuItem Header="Редактировать рецепт" Command="{Binding Content.RecipeVM.EditCommand}"/>
-                        <MenuItem Header="Сохранить рецепт" Command="{Binding Content.RecipeVM.SaveCommand}"/>
-                    </ContextMenu>
-                </ListView.ContextMenu>
-            </ListView>
+                       ScrollViewer.VerticalScrollBarVisibility="Hidden" Grid.Row="1" Margin="6">
+                    <ListView.Template>
+                        <ControlTemplate>
+                            <Border CornerRadius="9" BorderThickness="1" Background="White">
+                                <Border.BorderBrush>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFD4D4D4" Offset="0"/>
+                                        <GradientStop Color="White" Offset="0.452"/>
+                                        <GradientStop Color="#FFDADADA" Offset="0.97"/>
+                                        <GradientStop Color="#FFE6E6E6" Offset="0.761"/>
+                                    </LinearGradientBrush>
+                                </Border.BorderBrush>
+                                <ItemsPresenter Margin="4"/>
+                            </Border>
+                        </ControlTemplate>
+                    </ListView.Template>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <local:ItemsListBox/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Добавить рецепт" Command="{Binding Content.RecipeVM.AddCommand}"/>
+                            <MenuItem Header="Удалить рецепт" Command="{Binding Content.RecipeVM.RemoveCommand}"/>
+                            <MenuItem Header="Редактировать рецепт" Command="{Binding Content.RecipeVM.EditCommand}"/>
+                            <MenuItem Header="Сохранить рецепт" Command="{Binding Content.RecipeVM.SaveCommand}"/>
+                        </ContextMenu>
+                    </ListView.ContextMenu>
+                </ListView>
+                </ScrollViewer>
+            </Border>
         </Grid>
-        <Grid Grid.Column="1" Margin="10,0,0,0" >
+        <Grid Grid.Column="1" Margin="10,8" >
             <ContentControl>
                 <ContentControl.Content>
                     <local:RecipeView DataContext="{Binding Content.RecipeVM}"/>

@@ -10,11 +10,12 @@ using LearningWPF.Model;
 
 namespace LearningWPF.Service
 {
+    //TODO: Сохранение настроек
     public class JsonFileService : ICategoryDataService
     {
         private readonly string _dataPath = "Recipe.json";
 
-        public IEnumerable<ItemTab> GetCategories()
+        public ICollection<ItemTab> GetCategories()
         {
             if (!File.Exists(_dataPath))
             {
@@ -22,7 +23,7 @@ namespace LearningWPF.Service
             }
 
             var serializedCategories = File.ReadAllText(_dataPath);
-            var Categories = JsonConvert.DeserializeObject<IEnumerable<ItemTab>>(serializedCategories);
+            var Categories = JsonConvert.DeserializeObject<List<ItemTab>>(serializedCategories);
 
             if (Categories == null)
             {
@@ -30,12 +31,12 @@ namespace LearningWPF.Service
             }
             return Categories;
         }
-        public void SaveCategories(IEnumerable<ItemTab> itemTabs)
+        public void SaveCategories(ICollection<ItemTab> itemTabs)
         {
             var serializedCategories = JsonConvert.SerializeObject(itemTabs, Formatting.Indented);
             File.WriteAllText(_dataPath, serializedCategories);
         }
-        public void SaveRecipe(IEnumerable<Recipe> recipes)
+        public void SaveRecipe(ICollection<Recipe> recipes)
         {
             var serializedRecipe = JsonConvert.SerializeObject(recipes, Formatting.Indented);
             File.WriteAllText(_dataPath, serializedRecipe);
