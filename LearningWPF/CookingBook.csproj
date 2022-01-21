@@ -106,6 +106,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RecipesDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Service\ObservableCollectionEx.cs" />
     <Compile Include="Service\ICategoryDataService.cs" />
     <Compile Include="ViewModel\CategoryViewModel.cs" />
     <Compile Include="Helpers\Converters.cs" />
@@ -235,6 +236,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="View\Без имени-2.png" />
+    <Resource Include="Без имени-2.png" />
+    <Resource Include="Resourse\BackgroudApp.jpg" />
     <Content Include="Recipes.mdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

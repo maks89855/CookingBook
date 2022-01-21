@@ -6,9 +6,10 @@
         xmlns:local="clr-namespace:LearningWPF"
         xmlns:v="clr-namespace:LearningWPF.View"
         mc:Ignorable="d"
-        Title="Cooking Book" Height="800" Width="1150" WindowStartupLocation="CenterScreen" 
-        MinWidth="800"
-        MinHeight="800">
+        Title="Cooking Book" WindowStartupLocation="CenterScreen" 
+        SizeToContent="WidthAndHeight"
+        MinWidth="1000"
+        MinHeight="600">
     <!--AllowsTransparency="True" WindowStyle="None" Background="Transparent"-->
     <Window.DataContext>
         <local:AppMain/>
@@ -22,6 +23,9 @@
         </Style>
     </Window.Resources>
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Resourse/BackgroudApp.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
         <!--<Border CornerRadius="15" BorderBrush="Black" BorderThickness="1" Background="#FF6BB8FB">
             <Grid>
                 <Grid.RowDefinitions>

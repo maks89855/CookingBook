@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LearningWPF.View"
              mc:Ignorable="d" 
-             d:DesignHeight="880" d:DesignWidth="900" FontFamily="Arial">
+             FontFamily="Arial">
     <Border CornerRadius="9" Background="#FFF3F1F1">
         <Border CornerRadius="8" BorderThickness="0.9" Margin="6" Background="White">
             <Border.BorderBrush>
@@ -18,7 +18,7 @@
             </Border.BorderBrush>
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <Grid Visibility="{Binding SelectedRecipe, Converter={StaticResource SelectedRecipeConverter}}" 
-                  Margin="4" ScrollViewer.VerticalScrollBarVisibility="Visible"
+                  Margin="15,4,4,4" ScrollViewer.VerticalScrollBarVisibility="Visible"
                   Background="White">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
@@ -39,7 +39,7 @@
                             FallbackValue={StaticResource DefaultContactImage},
                             TargetNullValue={StaticResource DefaultContactImage}}"
                 Visibility="{Binding IsDisplayMode, Converter={StaticResource IsEditConverter}}" 
-                       Width="340" Height="340" HorizontalAlignment="Center" VerticalAlignment="Center"      
+                       Width="700" Height="400" HorizontalAlignment="Center" VerticalAlignment="Center"      
                        />
                     <Button Style="{DynamicResource AddImageButton}" Width="400px"
                         Command="{Binding AddImageCommand}"
@@ -50,7 +50,7 @@
                             FallbackValue={StaticResource DefaultContactImage},
                             TargetNullValue={StaticResource DefaultContactImage}}" 
                            HorizontalAlignment="Center" VerticalAlignment="Center" 
-                           Width="340" Height="340"/>
+                           Width="700" Height="400"/>
                     </Button>
                 </Grid>
                 <Grid Grid.Row="2">
@@ -70,7 +70,7 @@
                          AcceptsReturn="True" TextWrapping="WrapWithOverflow"
                      Visibility="{Binding IsEditMode, Converter={StaticResource IsEditConverter}}" 
                          SpellCheck.IsEnabled="True" AcceptsTab="True" FontSize="14"
-                                 MinWidth="878" MinHeight="100">
+                                 MinWidth="878" MinHeight="150">
                         </TextBox>
                     </Border>
                 </Grid>
@@ -88,7 +88,7 @@
                                MinWidth="878" MinHeight="100"/>
                     <TextBox Grid.Row="1"  Text="{Binding SelectedRecipe.CookingMethod}"
                          AcceptsReturn="True" Margin="2"
-                         TextWrapping="Wrap" MinWidth="878" MinHeight="100"
+                         TextWrapping="Wrap" MinWidth="878" MinHeight="150"
                      Visibility="{Binding IsEditMode, Converter={StaticResource IsEditConverter}}" 
                           AcceptsTab="True"/>
                 </Grid>

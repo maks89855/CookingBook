@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Windows.Data;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Input;
@@ -28,8 +29,11 @@ namespace LearningWPF
         //private OleDbConnection _connection;
 
         private Recipe _selectedRecipe;
+
+        public ObservableCollectionEx<Recipe> Recipes { get; set; }
+
         public ICollectionView RecipeView { get; set; }
-        public ObservableCollection<Recipe> Recipes { get; set; }
+        
 
         public Recipe SelectedRecipe
         {
@@ -69,6 +73,11 @@ namespace LearningWPF
             //OleDbCommand oleDbCommand = new OleDbCommand(Recipe, _connection);
             //oleDbCommand.ExecuteNonQuery();
             //_connection.Close();
+        }
+        public ICommand SortCommand { get; private set; }
+        public void Sort()
+        {
+            Recipes.Sort(p => p.NameRecipe);
         }
 
         /// <summary>
@@ -188,10 +197,11 @@ namespace LearningWPF
             EditCommand = new RelayCommand(Edit, CanEdit);
             SaveCommand = new RelayCommand(Save, IsEdit);
             AddImageCommand = new RelayCommand(AddImage, IsEdit);
+            SortCommand = new RelayCommand(Sort);
             //_dataService = dataSevice;
             _categoryDataService = categoryDataService;
-            Recipes = new ObservableCollection<Recipe>();
-            //RecipeView = System.Windows.Data.CollectionViewSource.GetDefaultView(Recipes);
+            Recipes = new ObservableCollectionEx<Recipe>();
+            //RecipeView = CollectionViewSource.GetDefaultView(Recipes);
             //RecipeView.Filter = FilterRecipes;
             //RecipeView.SortDescriptions.Add(new SortDescription(nameof(Recipe.NameRecipe), ListSortDirection.Ascending));
             _dialogService = dialogService;

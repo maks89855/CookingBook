@@ -6,17 +6,18 @@
              xmlns:v="clr-namespace:LearningWPF.View"
              xmlns:tab="clr-namespace:LearningWPF.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             >
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
             <RowDefinition Height="30*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Border HorizontalAlignment="Center" VerticalAlignment="Center" 
-                    CornerRadius="8" BorderThickness="1">
+                    CornerRadius="8" BorderThickness="1" Background="White">
                 <Border.BorderBrush>
-                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="
+                                         RelativeToBoundingBox" StartPoint="0.5,0">
                         <GradientStop Color="#FFD4D4D4" Offset="0"/>
                         <GradientStop Color="White"/>
                         <GradientStop Color="#FFDADADA" Offset="0.97"/>
@@ -75,7 +76,7 @@
             TabStripPlacement="Top"
             SelectedItem="{Binding TabVM.SelectedCategory}"
             ItemsSource="{Binding TabVM.ItemTabs, Mode=TwoWay}"             
-            Grid.Row="1">
+            Grid.Row="1" Margin="0,2,0,0">
             <TabControl.ItemTemplate>
                 <DataTemplate>
                     <Grid>
