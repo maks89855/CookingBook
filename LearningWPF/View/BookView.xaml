@@ -32,11 +32,11 @@
                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                        ScrollViewer.VerticalScrollBarVisibility="Hidden" Grid.Column="1" Margin="6">
                             <ListView.Resources>
-                                <SolidColorBrush x:Key="Item.MouseOver.Background" Color="#eed1a8"/>
+                                <SolidColorBrush x:Key="Item.MouseOver.Background" Color="#FFF3DEBF"/>
                                 <SolidColorBrush x:Key="Item.MouseOver.Border" Color="#A8FFFFFF"/>
                                 <SolidColorBrush x:Key="Item.SelectedInactive.Background" Color="#3DDADADA"/>
                                 <SolidColorBrush x:Key="Item.SelectedInactive.Border" Color="#FFDADADA"/>
-                                <SolidColorBrush x:Key="Item.SelectedActive.Background" Color="#FFA2A2A2"/>
+                                <SolidColorBrush x:Key="Item.SelectedActive.Background" Color="#eed1a8"/>
                                 <SolidColorBrush x:Key="Item.SelectedActive.Border" Color="White"/>
                                 <Style TargetType="{x:Type ListViewItem}">
                                     <Setter Property="SnapsToDevicePixels" Value="True"/>

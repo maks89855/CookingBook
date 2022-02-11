@@ -4,7 +4,7 @@
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="RecipesConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="RecipesConnectionString (Settings)" PropertyReference="ApplicationSettings.LearningWPF.Properties.Settings.GlobalReference.Default.RecipesConnectionString" Provider="System.Data.OleDb" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="RecipesConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="RecipesConnectionString (Settings)" PropertyReference="ApplicationSettings.CookingBook.Properties.Settings.GlobalReference.Default.RecipesConnectionString" Provider="System.Data.OleDb" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="RecipeTableAdapter" GeneratorDataComponentClassName="RecipeTableAdapter" Name="Recipe" UserDataComponentName="RecipeTableAdapter">
@@ -74,42 +74,42 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="RecipesDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="RecipesDataSet" msprop:Generator_UserDSName="RecipesDataSet">
+  <xs:element name="RecipesDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_UserDSName="RecipesDataSet" msprop:Generator_DataSetName="RecipesDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Recipe" msprop:Generator_TableClassName="RecipeDataTable" msprop:Generator_TableVarName="tableRecipe" msprop:Generator_TablePropName="Recipe" msprop:Generator_RowDeletingName="RecipeRowDeleting" msprop:Generator_RowChangingName="RecipeRowChanging" msprop:Generator_RowEvHandlerName="RecipeRowChangeEventHandler" msprop:Generator_RowDeletedName="RecipeRowDeleted" msprop:Generator_UserTableName="Recipe" msprop:Generator_RowChangedName="RecipeRowChanged" msprop:Generator_RowEvArgName="RecipeRowChangeEvent" msprop:Generator_RowClassName="RecipeRow">
+        <xs:element name="Recipe" msprop:Generator_RowClassName="RecipeRow" msprop:Generator_RowEvHandlerName="RecipeRowChangeEventHandler" msprop:Generator_RowDeletedName="RecipeRowDeleted" msprop:Generator_RowDeletingName="RecipeRowDeleting" msprop:Generator_RowEvArgName="RecipeRowChangeEvent" msprop:Generator_TablePropName="Recipe" msprop:Generator_RowChangedName="RecipeRowChanged" msprop:Generator_RowChangingName="RecipeRowChanging" msprop:Generator_TableClassName="RecipeDataTable" msprop:Generator_UserTableName="Recipe" msprop:Generator_TableVarName="tableRecipe">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:int" />
-              <xs:element name="Category" msprop:Generator_ColumnVarNameInTable="columnCategory" msprop:Generator_ColumnPropNameInRow="Category" msprop:Generator_ColumnPropNameInTable="CategoryColumn" msprop:Generator_UserColumnName="Category" minOccurs="0">
+              <xs:element name="id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_UserColumnName="id" type="xs:int" />
+              <xs:element name="Category" msprop:Generator_ColumnPropNameInRow="Category" msprop:Generator_ColumnPropNameInTable="CategoryColumn" msprop:Generator_ColumnVarNameInTable="columnCategory" msprop:Generator_UserColumnName="Category" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="255" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="NameRecipe" msprop:Generator_ColumnVarNameInTable="columnNameRecipe" msprop:Generator_ColumnPropNameInRow="NameRecipe" msprop:Generator_ColumnPropNameInTable="NameRecipeColumn" msprop:Generator_UserColumnName="NameRecipe" minOccurs="0">
+              <xs:element name="NameRecipe" msprop:Generator_ColumnPropNameInRow="NameRecipe" msprop:Generator_ColumnPropNameInTable="NameRecipeColumn" msprop:Generator_ColumnVarNameInTable="columnNameRecipe" msprop:Generator_UserColumnName="NameRecipe" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="255" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="ImagePath" msprop:Generator_ColumnVarNameInTable="columnImagePath" msprop:Generator_ColumnPropNameInRow="ImagePath" msprop:Generator_ColumnPropNameInTable="ImagePathColumn" msprop:Generator_UserColumnName="ImagePath" minOccurs="0">
+              <xs:element name="ImagePath" msprop:Generator_ColumnPropNameInRow="ImagePath" msprop:Generator_ColumnPropNameInTable="ImagePathColumn" msprop:Generator_ColumnVarNameInTable="columnImagePath" msprop:Generator_UserColumnName="ImagePath" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="536870910" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="CompositionOfTheDish" msprop:Generator_ColumnVarNameInTable="columnCompositionOfTheDish" msprop:Generator_ColumnPropNameInRow="CompositionOfTheDish" msprop:Generator_ColumnPropNameInTable="CompositionOfTheDishColumn" msprop:Generator_UserColumnName="CompositionOfTheDish" minOccurs="0">
+              <xs:element name="CompositionOfTheDish" msprop:Generator_ColumnPropNameInRow="CompositionOfTheDish" msprop:Generator_ColumnPropNameInTable="CompositionOfTheDishColumn" msprop:Generator_ColumnVarNameInTable="columnCompositionOfTheDish" msprop:Generator_UserColumnName="CompositionOfTheDish" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="536870910" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="CookingMethod" msprop:Generator_ColumnVarNameInTable="columnCookingMethod" msprop:Generator_ColumnPropNameInRow="CookingMethod" msprop:Generator_ColumnPropNameInTable="CookingMethodColumn" msprop:Generator_UserColumnName="CookingMethod" minOccurs="0">
+              <xs:element name="CookingMethod" msprop:Generator_ColumnPropNameInRow="CookingMethod" msprop:Generator_ColumnPropNameInTable="CookingMethodColumn" msprop:Generator_ColumnVarNameInTable="columnCookingMethod" msprop:Generator_UserColumnName="CookingMethod" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="536870910" />

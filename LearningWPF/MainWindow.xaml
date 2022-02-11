@@ -9,7 +9,9 @@
         Title="Cooking Book" WindowStartupLocation="CenterScreen" 
         SizeToContent="WidthAndHeight"
         MinWidth="1000"
-        MinHeight="600">
+        MinHeight="600"
+        MaxHeight="700"
+        MaxWidth="1150">
     <!--AllowsTransparency="True" WindowStyle="None" Background="Transparent"-->
     <Window.DataContext>
         <local:AppMain/>

@@ -64,13 +64,13 @@
                    FontSize="14" FontFamily="Arial" TextWrapping="Wrap"
                                ScrollViewer.VerticalScrollBarVisibility="Visible"
                    Visibility="{Binding IsDisplayMode, Converter={StaticResource IsEditConverter}}" 
-                               MinWidth="878" MinHeight="100" />
+                                MinHeight="100" />
                     <Border Grid.Row="1">
                         <TextBox Text="{Binding SelectedRecipe.СompositionOfTheDish}"
-                         AcceptsReturn="True" TextWrapping="WrapWithOverflow"
+                         AcceptsReturn="True" TextWrapping="Wrap"
                      Visibility="{Binding IsEditMode, Converter={StaticResource IsEditConverter}}" 
                          SpellCheck.IsEnabled="True" AcceptsTab="True" FontSize="14"
-                                 MinWidth="878" MinHeight="150">
+                                 MinWidth="500" MinHeight="150">
                         </TextBox>
                     </Border>
                 </Grid>
@@ -84,15 +84,18 @@
                            FontWeight="Bold"/>
                     <TextBlock Grid.Row="1"  Text="{Binding SelectedRecipe.CookingMethod}"
                    FontSize="14" FontFamily="Arial" TextWrapping="Wrap"
+                   ScrollViewer.VerticalScrollBarVisibility="Visible"
                    Visibility="{Binding IsDisplayMode, Converter={StaticResource IsEditConverter}}" 
-                               MinWidth="878" MinHeight="100"/>
+                                MinHeight="100"/>
                     <TextBox Grid.Row="1"  Text="{Binding SelectedRecipe.CookingMethod}"
                          AcceptsReturn="True" Margin="2"
-                         TextWrapping="Wrap" MinWidth="878" MinHeight="150"
+                         TextWrapping="Wrap" MinWidth="500" MinHeight="150"
                      Visibility="{Binding IsEditMode, Converter={StaticResource IsEditConverter}}" 
                           AcceptsTab="True"/>
                 </Grid>
-                <Grid HorizontalAlignment="Right" VerticalAlignment="Top">
+                
+                    
+                    <Grid HorizontalAlignment="Right" VerticalAlignment="Top">
                     <Button  Style="{StaticResource EditButton}" Command="{Binding EditCommand}" 
                     CommandParameter="{Binding SelectedRecipe}"  
                     Visibility="{Binding IsDisplayMode, Converter={StaticResource IsEditConverter}}"
