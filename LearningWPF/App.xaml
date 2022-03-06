@@ -14,7 +14,7 @@
         <helper:BoolToVisibilityConverter x:Key="IsEditConverter"/>
         <helper:NullToVisibilityConverter x:Key="SelectedRecipeConverter"/>
 
-        <BitmapImage x:Key="DefaultContactImage" UriSource="/Resourse/DefaultImage.png"/>
+        <BitmapImage x:Key="DefaultContactImage" UriSource="/Resourse/DefaultImage.png" />
         
         <Style x:Key="AddButton" TargetType="Button">
             <Setter Property="Template">

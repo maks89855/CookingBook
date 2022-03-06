@@ -21,7 +21,7 @@ using System.Data.OleDb;
 namespace LearningWPF
 {
     /// <summary>
-    /// 
+    /// Создание рецепта
     /// </summary>
     public class ApplicationViewModel : PropertyChange
     {
@@ -159,6 +159,12 @@ namespace LearningWPF
                 //_connection.Close();
             }
         }
+        public ICommand InsertCommand { get;private set; }
+        private void Insert()
+        {
+            var insertText = "℃";
+            _selectedRecipe.CookingMethod.Insert(0,insertText);
+        }
         #region Операции с изображением
         /// <summary>
         /// Команда "Изменение картинки"
@@ -198,6 +204,7 @@ namespace LearningWPF
             SaveCommand = new RelayCommand(Save, IsEdit);
             AddImageCommand = new RelayCommand(AddImage, IsEdit);
             SortCommand = new RelayCommand(Sort);
+            InsertCommand = new RelayCommand(Insert);
             //_dataService = dataSevice;
             _categoryDataService = categoryDataService;
             Recipes = new ObservableCollectionEx<Recipe>();

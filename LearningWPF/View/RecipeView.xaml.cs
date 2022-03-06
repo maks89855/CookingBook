@@ -30,5 +30,35 @@ namespace LearningWPF.View
         {
 
         }
+
+
+        private void TextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            
+            
+        }
+
+
+        private void TextBox_MouseDoubleClick(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void test21_TargetUpdated(object sender, DataTransferEventArgs e)
+        {
+
+        }
+
+        private void Grid_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+                        if(e.Key== Key.F1) 
+            {
+                var insertText = "℃";
+                var selectionIndex = test21.SelectionStart;
+                test21.Text = test21.Text.Insert(selectionIndex, insertText);
+                test21.SelectionStart = selectionIndex + test21.Text.Length;
+            }
+
+        }
     }
 }

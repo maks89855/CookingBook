@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:LearningWPF.View"
              mc:Ignorable="d" 
              FontFamily="Arial">
-    <Border CornerRadius="9" Background="#FFF3F1F1">
+    <Border CornerRadius="9" Background="#FFE4B289">
         <Border CornerRadius="8" BorderThickness="0.9" Margin="6" Background="White">
             <Border.BorderBrush>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -19,7 +19,7 @@
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <Grid Visibility="{Binding SelectedRecipe, Converter={StaticResource SelectedRecipeConverter}}" 
                   Margin="15,4,4,4" ScrollViewer.VerticalScrollBarVisibility="Visible"
-                  Background="White">
+                  Background="White" PreviewKeyDown="Grid_PreviewKeyDown">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="9*"/>
@@ -66,11 +66,11 @@
                    Visibility="{Binding IsDisplayMode, Converter={StaticResource IsEditConverter}}" 
                                 MinHeight="100" />
                     <Border Grid.Row="1">
-                        <TextBox Text="{Binding SelectedRecipe.СompositionOfTheDish}"
+                        <TextBox x:Name="test" Text="{Binding SelectedRecipe.СompositionOfTheDish}"
                          AcceptsReturn="True" TextWrapping="Wrap"
                      Visibility="{Binding IsEditMode, Converter={StaticResource IsEditConverter}}" 
                          SpellCheck.IsEnabled="True" AcceptsTab="True" FontSize="14"
-                                 MinWidth="500" MinHeight="150">
+                                 MinWidth="500" MinHeight="150" KeyUp="TextBox_KeyUp">
                         </TextBox>
                     </Border>
                 </Grid>
@@ -87,7 +87,7 @@
                    ScrollViewer.VerticalScrollBarVisibility="Visible"
                    Visibility="{Binding IsDisplayMode, Converter={StaticResource IsEditConverter}}" 
                                 MinHeight="100"/>
-                    <TextBox Grid.Row="1"  Text="{Binding SelectedRecipe.CookingMethod}"
+                    <TextBox x:Name="test21" Grid.Row="1"  Text="{Binding SelectedRecipe.CookingMethod}"
                          AcceptsReturn="True" Margin="2"
                          TextWrapping="Wrap" MinWidth="500" MinHeight="150"
                      Visibility="{Binding IsEditMode, Converter={StaticResource IsEditConverter}}" 
