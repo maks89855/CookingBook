@@ -212,9 +212,6 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resourse\EditImage.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resourse\SaveIcon.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -242,8 +239,13 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="DefaultImage3.png" />
+    <Resource Include="Resourse\DefaultImage3.jpg" />
+    <Resource Include="View\SaveIcon.ico" />
+    <Resource Include="Resourse\EditImage.ico" />
     <Resource Include="Без имени-2.png" />
     <Resource Include="Resourse\BackgroudApp.jpg" />
+    <Resource Include="DefaultImage3.jpg" />
     <Content Include="Recipes.mdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -55,5 +55,13 @@ namespace LearningWPF.View
             }
 
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var insertText = "℃";
+            var selectionIndex = test21.SelectionStart;
+            test21.Text = test21.Text.Insert(selectionIndex, insertText);
+            test21.SelectionStart = selectionIndex + test21.Text.Length;
+        }
     }
 }
