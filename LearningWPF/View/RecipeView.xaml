@@ -94,6 +94,8 @@
                           AcceptsTab="True">
                             <TextBox.ContextMenu>
                                 <ContextMenu>
+                                    <MenuItem Header="Копировать" Command="Copy"/>
+                                    <MenuItem Header="Вставить" Command="Paste"/>
                                     <MenuItem Header="Вставить ℃" Click="MenuItem_Click"/>
                                 </ContextMenu>
                             </TextBox.ContextMenu>
