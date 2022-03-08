@@ -14,7 +14,7 @@
         <helper:BoolToVisibilityConverter x:Key="IsEditConverter"/>
         <helper:NullToVisibilityConverter x:Key="SelectedRecipeConverter"/>
 
-        <BitmapImage x:Key="DefaultContactImage" UriSource="/Resourse/DefaultImage.png"/>
+        <BitmapImage x:Key="DefaultContactImage" UriSource="/DefaultImage3.jpg" />
         
         <Style x:Key="AddButton" TargetType="Button">
             <Setter Property="Template">
@@ -71,7 +71,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Name="ButtonBorder" CornerRadius="10 0 0 10" BorderThickness="0" Background="{x:Null}" BorderBrush="Transparent" Cursor="Hand">
+                        <Border Name="ButtonBorder" CornerRadius="10 0 0 10" BorderThickness="0" BorderBrush="Transparent" Cursor="Hand">
                             <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>

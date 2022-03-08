@@ -21,7 +21,7 @@ using System.Data.OleDb;
 namespace LearningWPF
 {
     /// <summary>
-    /// 
+    /// Создание рецепта
     /// </summary>
     public class ApplicationViewModel : PropertyChange
     {
@@ -198,6 +198,7 @@ namespace LearningWPF
             SaveCommand = new RelayCommand(Save, IsEdit);
             AddImageCommand = new RelayCommand(AddImage, IsEdit);
             SortCommand = new RelayCommand(Sort);
+
             //_dataService = dataSevice;
             _categoryDataService = categoryDataService;
             Recipes = new ObservableCollectionEx<Recipe>();

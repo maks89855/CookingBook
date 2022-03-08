@@ -39,6 +39,13 @@
                             </ToolTip>
                         </MenuItem.ToolTip>
                     </MenuItem>
+                    <!--<MenuItem Header="Добавить символ" Command="{Binding TabVM.SelectedCategory.Content.RecipeVM.InsertCommand}">
+                        <MenuItem.ToolTip>
+                            <ToolTip>
+                                Добавит категорию
+                            </ToolTip>
+                        </MenuItem.ToolTip>
+                    </MenuItem>-->
                     <MenuItem Header="Удалить категорию" Command="{Binding TabVM.RemoveTabCommand}">
                         <MenuItem.ToolTip>
                             <ToolTip>
@@ -69,6 +76,7 @@
                             </ToolTip>
                         </MenuItem.ToolTip>
                     </MenuItem>
+
                 </Menu>
             </Border>
         </Grid>

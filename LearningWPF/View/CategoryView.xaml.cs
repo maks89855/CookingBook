@@ -30,5 +30,10 @@ namespace LearningWPF.View
         {
             IsEnabled = true;
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
