@@ -19,20 +19,12 @@
             <Border CornerRadius="9" BorderThickness="0." BorderBrush="Black"  
                     Background="#FFE4B289" Margin="4,0,0,4">
                 <Grid>
-                    <!--<Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition Height="40*"/>
-                    </Grid.RowDefinitions>
-                    <TextBox Grid.Row="0" Background="#FFDAD8D8" 
-                             Text="{Binding Content.RecipeVM.RecipesFilter,
-                UpdateSourceTrigger=PropertyChanged}"/>-->
-                    
-                        <ListView ItemsSource="{Binding Content.RecipeVM.Recipes}"
+                    <ListView ItemsSource="{Binding Content.RecipeVM.Recipes}"
                         SelectedItem="{Binding Content.RecipeVM.SelectedRecipe}" 
                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                       ScrollViewer.VerticalScrollBarVisibility="Auto" Grid.Column="1" Margin="6" d:ItemsSource="{d:SampleData ItemCount=5}">
-
-                            <ListView.ItemTemplate>
+                       ScrollViewer.VerticalScrollBarVisibility="Auto" Grid.Column="1" Margin="6" 
+                                  d:ItemsSource="{d:SampleData ItemCount=5}">
+                        <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <local:ItemsListBox/>
                                 </DataTemplate>
@@ -51,15 +43,11 @@
             </Border>
         </Grid>
         <Grid Grid.Column="1" Margin="30,10,10,10">
-
             <ContentControl>
                 <ContentControl.Content>
                     <local:RecipeView DataContext="{Binding Content.RecipeVM}"/>
                 </ContentControl.Content>
             </ContentControl>
         </Grid>
-        <!--<Button Command="{Binding Content.RecipeVM.AddCommand}" 
-                Style="{StaticResource AddButton}" Width="130" Height="25" 
-                VerticalAlignment="Bottom" Content="Добавление рецепта"/>-->
     </Grid>
 </UserControl>

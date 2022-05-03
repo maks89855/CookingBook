@@ -23,16 +23,18 @@ namespace LearningWPF
             get { return _categoryVM; }
             set { OnPropertyChanged(ref _categoryVM, value); }
         }
+
         public AppMain()
         {
+            var dialogService = new WindowDialogService();
             var dataService = new JsonFileService();
-            CategoryVM = new CategoryViewModel(dataService);
+            CategoryVM = new CategoryViewModel(dataService, dialogService);
             CurrentViewCategory = CategoryVM;
         }
     }
 }
 
-//TODO:
+//TODO: Создание отдельного файла и окна с настройками 
 //TODO:
 /*
  * 

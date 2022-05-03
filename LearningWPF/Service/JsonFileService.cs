@@ -7,21 +7,19 @@ using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 using LearningWPF.Model;
+using System.Windows.Media.Imaging;
 
 namespace LearningWPF.Service
 {
-    //TODO: Сохранение настроек
     public class JsonFileService : ICategoryDataService
     {
         private readonly string _dataPath = "Recipe.json";
-
-        public ICollection<ItemTab> GetCategories()
+        public IEnumerable<ItemTab> GetCategories()
         {
             if (!File.Exists(_dataPath))
             {
                 File.Create(_dataPath).Close();
             }
-
             var serializedCategories = File.ReadAllText(_dataPath);
             var Categories = JsonConvert.DeserializeObject<List<ItemTab>>(serializedCategories);
 
@@ -29,14 +27,14 @@ namespace LearningWPF.Service
             {
                 return new List<ItemTab>();
             }
-            return Categories;
+                return Categories;
         }
-        public void SaveCategories(ICollection<ItemTab> itemTabs)
+        public void SaveCategories(IEnumerable<ItemTab> itemTabs)
         {
             var serializedCategories = JsonConvert.SerializeObject(itemTabs, Formatting.Indented);
             File.WriteAllText(_dataPath, serializedCategories);
         }
-        public void SaveRecipe(ICollection<Recipe> recipes)
+        public void SaveRecipe(IEnumerable<Recipe> recipes)
         {
             var serializedRecipe = JsonConvert.SerializeObject(recipes, Formatting.Indented);
             File.WriteAllText(_dataPath, serializedRecipe);

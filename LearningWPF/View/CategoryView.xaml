@@ -35,17 +35,18 @@
                     <MenuItem Header="Добавить категорию" Command="{Binding TabVM.AddTabCommand}">
                         <MenuItem.ToolTip>
                             <ToolTip>
-                                Добавит категорию
+                                Добавить категорию
                             </ToolTip>
                         </MenuItem.ToolTip>
                     </MenuItem>
-                    <!--<MenuItem Header="Добавить символ" Command="{Binding TabVM.SelectedCategory.Content.RecipeVM.InsertCommand}">
+                    <MenuItem Header="Сортировать категории" 
+                              Command="{Binding TabVM.SortCategoryCommand}">
                         <MenuItem.ToolTip>
                             <ToolTip>
-                                Добавит категорию
+                                Сортировать категорию
                             </ToolTip>
                         </MenuItem.ToolTip>
-                    </MenuItem>-->
+                    </MenuItem>
                     <MenuItem Header="Удалить категорию" Command="{Binding TabVM.RemoveTabCommand}">
                         <MenuItem.ToolTip>
                             <ToolTip>
@@ -76,23 +77,26 @@
                             </ToolTip>
                         </MenuItem.ToolTip>
                     </MenuItem>
-
+                    <MenuItem Header="Настройки">
+                        <MenuItem Header="Резервное копирование" 
+                                  Command="{Binding TabVM.BackupCommand}">
+                            
+                        </MenuItem>
+                    </MenuItem>
                 </Menu>
             </Border>
         </Grid>
         <TabControl Background="White" 
             TabStripPlacement="Top"
             SelectedItem="{Binding TabVM.SelectedCategory}"
-            ItemsSource="{Binding TabVM.ItemTabs, Mode=TwoWay}"             
+            ItemsSource="{Binding TabVM.ItemTabs}"             
             Grid.Row="1" Margin="0,2,0,0">
             <TabControl.ItemTemplate>
                 <DataTemplate>
                     <Grid>
-                        <Label Content="{Binding Category}"
-                               Visibility="{Binding IsDefaultMode, 
+                        <Label Content="{Binding Category}" Visibility="{Binding IsDefaultMode, 
                             Converter={StaticResource IsEditConverter}}"/>
-                        <TextBox Text="{Binding Category}"
-                                 Visibility="{Binding IsEditTabMode, 
+                        <TextBox Text="{Binding Category}" Visibility="{Binding IsEditTabMode, 
                             Converter={StaticResource IsEditConverter}}"/>
                     </Grid>
                 </DataTemplate>
@@ -109,10 +113,11 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                        <ScrollViewer HorizontalScrollBarVisibility="Auto" 
+                                      VerticalScrollBarVisibility="Disabled">
                             <TabPanel x:Name="HeaderPanel" IsItemsHost="True" Margin="0,2,0,0"/>
                         </ScrollViewer>
-                        <ContentPresenter x:Name="PART_SelectedContentHost" Margin="4" 
+                        <ContentPresenter  Margin="4" 
                                           ContentSource="SelectedContent" Grid.Row="1"/>
                     </Grid>
                 </ControlTemplate>

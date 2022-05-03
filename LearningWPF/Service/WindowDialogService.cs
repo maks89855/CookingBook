@@ -21,7 +21,21 @@ namespace LearningWPF.Service
 
             return null;
         }
+        
+        public string SaveFile()
+        {
+            var dialog = new SaveFileDialog();
+            DateTime dateTime = DateTime.Now;
 
+            dialog.FileName = $"Cooking_Book_Backup_{dateTime: dd/MM/yy_HH:mm:ss}";
+            dialog.DefaultExt = "json";
+            dialog.OverwritePrompt= true;
+            if(dialog.ShowDialog() == true)
+            {
+                return dialog.FileName;
+            }
+            return null;
+        }
         public void ShowMessageBox(string message)
         {
             throw new NotImplementedException();

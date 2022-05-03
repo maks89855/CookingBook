@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace LearningWPF.Model
 {
@@ -16,7 +17,9 @@ namespace LearningWPF.Model
         private string _category;
         private string _compositionOfTheDish;
         private string _cookingMethod;
-        private string _imagePath;
+        private ImageSource _imagePath;
+        private string _imagePath1;
+        private string _imagePath2;
 
         /// <summary>
         /// Название рецепта
@@ -69,10 +72,21 @@ namespace LearningWPF.Model
         /// <summary>
         /// Изображение
         /// </summary>
-        public string ImagePath
+        public ImageSource ImagePath
         {
             get { return _imagePath; }
             set { OnPropertyChanged(ref _imagePath, value); }
+        }
+
+        public string ImagePath1
+        {
+            get { return _imagePath1; }
+            set { OnPropertyChanged(ref _imagePath1, value); }
+        }
+        public string ImagePath2
+        {
+            get { return _imagePath2; }
+            set { OnPropertyChanged(ref _imagePath2, value); }
         }
     }
 }

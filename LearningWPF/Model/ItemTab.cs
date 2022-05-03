@@ -23,7 +23,7 @@ namespace LearningWPF.Model
             set
             {
                 _category = value;
-                OnPropertyChanged("Header");
+                OnPropertyChanged("Category");
             }
         }
 
