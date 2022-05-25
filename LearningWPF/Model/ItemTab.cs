@@ -14,7 +14,7 @@ namespace LearningWPF.Model
 {
     public class ItemTab: PropertyChange
     {
-        public int ID { get; set; }
+        public static int ID { get; set; }
 
         private string _category;
         public string Category 

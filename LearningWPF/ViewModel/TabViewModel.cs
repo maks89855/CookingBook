@@ -18,9 +18,7 @@ namespace LearningWPF.ViewModel
     public class TabViewModel : PropertyChange
     {
         #region Tabs
-
         private ICategoryDataService _categoryDataSevice;
-
         private ItemTab _selectedCategory;
         private IDialogService _dialogService;
         /// <summary>
@@ -47,13 +45,14 @@ namespace LearningWPF.ViewModel
 
         private void AddTab()
         {
+            //TODO: Запрос на создание категории в БД
             ItemTab item = new ItemTab
             {
-                Category = "Категория"
+                Category = "Категория",
             };
             ItemTabs.Add(item);
             SelectedCategory = item;
-            _categoryDataSevice.SaveCategories(ItemTabs);
+            
         }
         public ICommand RemoveTabCommand { get; private set; }
         private void RemoveTab()
@@ -97,13 +96,25 @@ namespace LearningWPF.ViewModel
         public void Backup()
         {
             string Path = _dialogService.SaveFile();
-            if (Path == null) {  }
+            if (Path == null) { }
+            //TODO: Изменить тип сохранения на файл БД
             else { File.Copy("Recipe.json", $@"{Path}.json"); }
         }
 
+        public ICommand LoadBackupCommand { get; private set; }
+        public void LoadBackup()
+        {
+            //TODO: Загрузка файла БД
+            string Path = _dialogService.OpenFile("Image files|(*.bmp);*.jpg;*.jpeg;*.png|All files");
+            if (Path == null) { }
+            else { File.Copy($@"{Path}", $@".\Recipe.json", true); }
+            System.Diagnostics.Process.Start(System.Windows.Forms.Application.ExecutablePath);
+            Environment.Exit(0);
+        }
         public TabViewModel(ICategoryDataService categoryDataSevice, IDialogService dialogService)
         {
             SortCategoryCommand = new RelayCommand(Sort);
+            LoadBackupCommand = new RelayCommand(LoadBackup);
             BackupCommand = new RelayCommand(Backup);
             ItemTabs = new ObservableCollectionEx<ItemTab>();
             AddTabCommand = new RelayCommand(AddTab);

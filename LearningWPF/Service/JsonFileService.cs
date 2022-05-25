@@ -27,7 +27,7 @@ namespace LearningWPF.Service
             {
                 return new List<ItemTab>();
             }
-                return Categories;
+            return Categories;
         }
         public void SaveCategories(IEnumerable<ItemTab> itemTabs)
         {
@@ -38,6 +38,6 @@ namespace LearningWPF.Service
         {
             var serializedRecipe = JsonConvert.SerializeObject(recipes, Formatting.Indented);
             File.WriteAllText(_dataPath, serializedRecipe);
-        }      
+        }
     }
 }

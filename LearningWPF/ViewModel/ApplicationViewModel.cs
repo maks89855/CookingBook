@@ -13,6 +13,7 @@ using System.IO;
 using LearningWPF.ViewModel;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
+using System.Data.OleDb;
 
 namespace LearningWPF
 {
@@ -45,21 +46,22 @@ namespace LearningWPF
         delegate void DeleteHand(string ms);
 
         #endregion
-
         /// <summary>
         /// Команда "Добавить"
         /// </summary>
-        
+
         public ICommand AddCommand { get; private set; }
         private void Add()
         {
+
             var newContact = new Recipe
             {
                 NameRecipe = "Название рецепта",
+                CategoryID = ItemTab.ID
             };  
             Recipes.Add(newContact);
             SelectedRecipe = newContact;
-            IsEditMode = false;
+            IsEditMode = false;            
             OnPropertyChanged("SelectedRecipe");
         }
         public ICommand SortCommand { get; private set; }
@@ -75,7 +77,6 @@ namespace LearningWPF
         private void Remove()
         {
             Recipes.Remove(SelectedRecipe);
-
         }
         #region Редактирование
         /// <summary>
@@ -149,12 +150,11 @@ namespace LearningWPF
                 if (Path == null) { }
                 else
                 {
-                    string ToBase64String = Convert.ToBase64String(File.ReadAllBytes(Path));
+                    string ToBase64String = Convert.ToBase64String(File.ReadAllBytes(Path));                
                     var image = Image.FromStream(new MemoryStream(Convert.FromBase64String(ToBase64String)));
                     DateTime dateTime = DateTime.Now;
-                    string fileName = $"{dateTime:ddMMyymmss}";
-                    image.Save($@".\Image\file{fileName}.jpeg", System.Drawing.Imaging.ImageFormat.Jpeg);
-                    
+                    string fileName = $"{dateTime:ddMMyy}";
+                    image.Save($@".\Image\file{fileName}.jpeg", System.Drawing.Imaging.ImageFormat.Jpeg);                   
                     FileInfo f1 = new FileInfo($@".\Image\file{fileName}.jpeg");
                     //    string p = f.FullName;
                     //    //SelectedRecipe.ImagePath = p;
@@ -170,11 +170,21 @@ namespace LearningWPF
                         File.Delete(s.ToString().Remove(0, 8));
                     }
                 }
+               
 
             }
             else
             {
                 Directory.CreateDirectory(@".\Image");
+            }
+        }
+
+        private byte[] ConverImageToBinary(Image img)
+        {
+            using(MemoryStream ms = new MemoryStream())
+            {
+                img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                return ms.ToArray();              
             }
         }
         

@@ -1,11 +1,6 @@
 ﻿using LearningWPF.Util;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Media;
 
 namespace LearningWPF.Model
@@ -14,7 +9,9 @@ namespace LearningWPF.Model
     {
 
         private string _nameReicpe;
-        private string _category;
+        public string _recipeID; //TODO: Каждому рецепту присвоить ID
+        private int _categoryID;
+        private bool _favorites; //TODO: Добавить раздел избранное
         private string _compositionOfTheDish;
         private string _cookingMethod;
         private ImageSource _imagePath;
@@ -36,12 +33,12 @@ namespace LearningWPF.Model
         /// <summary>
         /// Категория
         /// </summary>
-        public string Category
+        public int CategoryID
         {
-            get { return _category; }
+            get { return _categoryID; }
             set
             {
-                _category = value;
+                _categoryID = value;
                 OnPropertyChanged("Category");
             }
         }
@@ -77,12 +74,17 @@ namespace LearningWPF.Model
             get { return _imagePath; }
             set { OnPropertyChanged(ref _imagePath, value); }
         }
-
+        /// <summary>
+        /// Второстепенная картинка 1
+        /// </summary>
         public string ImagePath1
         {
             get { return _imagePath1; }
             set { OnPropertyChanged(ref _imagePath1, value); }
         }
+        /// <summary>
+        /// Второстепенная картинка 2
+        /// </summary>
         public string ImagePath2
         {
             get { return _imagePath2; }

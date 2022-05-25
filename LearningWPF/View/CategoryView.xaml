@@ -82,6 +82,9 @@
                                   Command="{Binding TabVM.BackupCommand}">
                             
                         </MenuItem>
+                        <MenuItem Header="Загрузить резервную копию"
+                                  Command="{Binding TabVM.LoadBackupCommand}">
+                        </MenuItem>
                     </MenuItem>
                 </Menu>
             </Border>
