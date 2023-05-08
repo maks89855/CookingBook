@@ -26,7 +26,8 @@
     </Window.Resources>
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="Resourse/BackgroudApp.jpg" Stretch="UniformToFill"/>
+            <ImageBrush ImageSource="Resourse/BackgroudApp.jpg" 
+                        Stretch="UniformToFill"/>
         </Grid.Background>
         <!--<Border CornerRadius="15" BorderBrush="Black" BorderThickness="1" Background="#FF6BB8FB">
             <Grid>

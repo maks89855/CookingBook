@@ -14,7 +14,7 @@ namespace LearningWPF.Model
         private bool _favorites; //TODO: Добавить раздел избранное
         private string _compositionOfTheDish;
         private string _cookingMethod;
-        private ImageSource _imagePath;
+        private string _imagePath;
         private string _imagePath1;
         private string _imagePath2;
 
@@ -69,7 +69,7 @@ namespace LearningWPF.Model
         /// <summary>
         /// Изображение
         /// </summary>
-        public ImageSource ImagePath
+        public string ImagePath
         {
             get { return _imagePath; }
             set { OnPropertyChanged(ref _imagePath, value); }

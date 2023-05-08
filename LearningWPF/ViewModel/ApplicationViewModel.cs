@@ -142,36 +142,58 @@ namespace LearningWPF
         //TODO: Замена изображения
         private void AddImage()
         {
-            ImageSource s = _selectedRecipe.ImagePath;
-            
+            //ImageSource s = _selectedRecipe.ImagePath;
+
+            //if (Directory.Exists(@".\Image"))
+            //{
+            //    string Path = _dialogService.OpenFile("Image files|(*.bmp);*.jpg;*.jpeg;*.png|All files");
+            //    if (Path == null) { }
+            //    else
+            //    {
+            //        string ToBase64String = Convert.ToBase64String(File.ReadAllBytes(Path));                
+            //        var image = Image.FromStream(new MemoryStream(Convert.FromBase64String(ToBase64String)));
+            //        DateTime dateTime = DateTime.Now;
+            //        string fileName = $"{dateTime:ddMMyymmss}";
+            //        image.Save($@".\Image\file{fileName}.jpeg", System.Drawing.Imaging.ImageFormat.Jpeg);                   
+            //        FileInfo f1 = new FileInfo($@".\Image\file{fileName}.jpeg");
+            //        //    string p = f.FullName;
+            //        //    //SelectedRecipe.ImagePath = p;
+            //        BitmapImage image2 = new BitmapImage();
+            //        image2.BeginInit();
+            //        image2.CacheOption = BitmapCacheOption.OnLoad;
+            //        image2.UriSource = new Uri(f1.FullName);
+            //        SelectedRecipe.ImagePath = image2;
+            //        image2.EndInit();
+            //        if (s != null)
+            //        {
+
+            //            File.Delete(s.ToString().Remove(0, 8));
+            //        }
+            //    }
+
+
+            //}
+            //else
+            //{
+            //    Directory.CreateDirectory(@".\Image");
+            //}
             if (Directory.Exists(@".\Image"))
             {
                 string Path = _dialogService.OpenFile("Image files|(*.bmp);*.jpg;*.jpeg;*.png|All files");
                 if (Path == null) { }
                 else
                 {
-                    string ToBase64String = Convert.ToBase64String(File.ReadAllBytes(Path));                
-                    var image = Image.FromStream(new MemoryStream(Convert.FromBase64String(ToBase64String)));
-                    DateTime dateTime = DateTime.Now;
-                    string fileName = $"{dateTime:ddMMyy}";
-                    image.Save($@".\Image\file{fileName}.jpeg", System.Drawing.Imaging.ImageFormat.Jpeg);                   
-                    FileInfo f1 = new FileInfo($@".\Image\file{fileName}.jpeg");
-                    //    string p = f.FullName;
-                    //    //SelectedRecipe.ImagePath = p;
-                    BitmapImage image2 = new BitmapImage();
-                    image2.BeginInit();
-                    image2.CacheOption = BitmapCacheOption.OnLoad;
-                    image2.UriSource = new Uri(f1.FullName);
-                    SelectedRecipe.ImagePath = image2;
-                    image2.EndInit();
-                    if (s != null)
+                    string ToBase64String = Convert.ToBase64String(File.ReadAllBytes(Path));
+                    using (var image = Image.FromStream(new MemoryStream(Convert.FromBase64String(ToBase64String))))
                     {
-                        
-                        File.Delete(s.ToString().Remove(0, 8));
-                    }
+                        DateTime dateTime = DateTime.Now;
+                        string fileName = $"{dateTime:ddMMyymmss}";
+                        image.Save($@".\Image\File_{fileName}.jpeg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                        FileInfo f = new FileInfo($@".\Image\File_{fileName}.jpeg");
+                        string p = f.FullName;
+                        SelectedRecipe.ImagePath = p;                        
+                    };
                 }
-               
-
             }
             else
             {

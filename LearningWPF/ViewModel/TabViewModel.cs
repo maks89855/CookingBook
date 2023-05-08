@@ -12,6 +12,9 @@ using LearningWPF.Model;
 using LearningWPF.Service;
 using LearningWPF.Util;
 using System.IO;
+using System.Diagnostics;
+using System.Reflection;
+using System.Net;
 
 namespace LearningWPF.ViewModel
 {
@@ -97,20 +100,45 @@ namespace LearningWPF.ViewModel
         {
             string Path = _dialogService.SaveFile();
             if (Path == null) { }
-            //TODO: Изменить тип сохранения на файл БД
-            else { File.Copy("Recipe.json", $@"{Path}.json"); }
+            else { File.Copy("Recipe.json", $@"{Path}.json");                 
+            }
         }
 
         public ICommand LoadBackupCommand { get; private set; }
         public void LoadBackup()
         {
-            //TODO: Загрузка файла БД
             string Path = _dialogService.OpenFile("Image files|(*.bmp);*.jpg;*.jpeg;*.png|All files");
             if (Path == null) { }
             else { File.Copy($@"{Path}", $@".\Recipe.json", true); }
             System.Diagnostics.Process.Start(System.Windows.Forms.Application.ExecutablePath);
             Environment.Exit(0);
         }
+        public ICommand UpdateCommand { get; set; }
+        private WebClient client = new WebClient();
+
+        public void Update()
+        {
+            try
+            {
+                var s = client.DownloadString("");
+                var versionNew = new Version(s);
+                var versionOld = new Version(Assembly.GetExecutingAssembly().GetName().Version.ToString());
+                if (versionOld < versionNew)
+                {
+
+                    var filePath = @"C:\Users\maks8\Downloads\Download\Новая папка";
+                    client.DownloadFile("", filePath);
+                    Process.Start(filePath);
+                    Process.GetCurrentProcess().Kill();
+                }
+            }
+            catch (Exception)
+            {
+
+                Console.WriteLine("Обновление не требуется");
+            }
+        }
+
         public TabViewModel(ICategoryDataService categoryDataSevice, IDialogService dialogService)
         {
             SortCategoryCommand = new RelayCommand(Sort);
@@ -120,6 +148,7 @@ namespace LearningWPF.ViewModel
             AddTabCommand = new RelayCommand(AddTab);
             RemoveTabCommand = new RelayCommand(RemoveTab);
             SaveTabCommand = new RelayCommand(SaveCategory);
+            UpdateCommand = new RelayCommand(Update);
             _categoryDataSevice = categoryDataSevice;
             _dialogService = dialogService;
         }

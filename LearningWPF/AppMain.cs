@@ -1,4 +1,5 @@
-﻿using LearningWPF.Service;
+﻿using CookingBook.Service.Updater;
+using LearningWPF.Service;
 using LearningWPF.Util;
 using LearningWPF.ViewModel;
 using System;
@@ -24,12 +25,20 @@ namespace LearningWPF
             set { OnPropertyChanged(ref _categoryVM, value); }
         }
 
+        private AutoUpdateChecker _update;
+        public AutoUpdateChecker Update
+        {
+            get { return _update; }
+            set { OnPropertyChanged(ref _update, value); }
+        }
         public AppMain()
         {
+            //var update = 
             var dialogService = new WindowDialogService();
             var dataService = new JsonFileService();
             CategoryVM = new CategoryViewModel(dataService, dialogService);
-            CurrentViewCategory = CategoryVM;
+            CurrentViewCategory = CategoryVM;   
+            Update = new AutoUpdateChecker();
         }
     }
 }

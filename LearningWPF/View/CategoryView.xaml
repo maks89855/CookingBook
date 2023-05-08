@@ -80,10 +80,12 @@
                     <MenuItem Header="Настройки">
                         <MenuItem Header="Резервное копирование" 
                                   Command="{Binding TabVM.BackupCommand}">
-                            
                         </MenuItem>
                         <MenuItem Header="Загрузить резервную копию"
                                   Command="{Binding TabVM.LoadBackupCommand}">
+                        </MenuItem>
+                        <MenuItem Header="Обновить"
+                                  Command="{Binding TabVM.UpdateCommand}">
                         </MenuItem>
                     </MenuItem>
                 </Menu>
