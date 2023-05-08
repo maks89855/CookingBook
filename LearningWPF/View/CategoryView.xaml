@@ -65,7 +65,7 @@
                               Command="{Binding TabVM.SelectedCategory.Content.RecipeVM.AddCommand}">
                         <MenuItem.ToolTip>
                             <ToolTip>
-                                Удалить рецепт
+                                Добавить рецепт
                             </ToolTip>
                         </MenuItem.ToolTip>
                     </MenuItem>
